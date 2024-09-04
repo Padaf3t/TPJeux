@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class MoveDown : MonoBehaviour
 {
-    public GameObject groundPrefab;
-    public static PlayerController playerControllerScript;
 
     private float speed = 10f;
     private float bottomBound = -40f;
-    private float startPosition = 60f;
+    private Vector3 startPosition = new Vector3(0, 0, 60f);
 
 
 
@@ -18,16 +16,10 @@ public class MoveDown : MonoBehaviour
     {//Add if function to deal with game over. 
 
         transform.Translate(Vector3.back * speed * Time.deltaTime);
-        if (groundPrefab.transform.position.z < bottomBound && gameObject.CompareTag("Ground"))
+        if (gameObject.CompareTag("Ground") && transform.position.z < bottomBound)
         {
-            SpawnGround();
-            Destroy(groundPrefab);
+            transform.position = startPosition;
         }
 
-    }
-
-    void SpawnGround()
-    {
-        Instantiate(groundPrefab, new Vector3(0,0, startPosition), groundPrefab.transform.rotation);
     }
 }
