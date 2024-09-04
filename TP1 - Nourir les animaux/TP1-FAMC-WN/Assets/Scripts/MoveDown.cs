@@ -29,6 +29,5 @@ public class MoveDown : MonoBehaviour
     void SpawnGround()
     {
         Instantiate(groundPrefab, new Vector3(0,0, startPosition), groundPrefab.transform.rotation);
-
     }
 }
