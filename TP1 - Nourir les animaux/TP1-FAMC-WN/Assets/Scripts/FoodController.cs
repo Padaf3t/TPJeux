@@ -28,7 +28,7 @@ public class FoodController : MonoBehaviour
     {
         if(other.gameObject.CompareTag("animal"))
         {
-            other.gameObject.GetComponent<AnimalController>().manger();
+            other.gameObject.GetComponent<AnimalController>().Manger();
             Destroy(gameObject);
         }
     }

@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -26,8 +26,8 @@ public class PlayerController : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         rotationDirection = horizontalInput;
 
-        
-        
+
+
         SetMovement();
 
         if (horizontalInput == 0)
@@ -44,24 +44,24 @@ public class PlayerController : MonoBehaviour
 
         var newRotation = currentRotation + rotationDirection * rotationSpeed * Time.deltaTime;
         SetCurrentRotation(newRotation);
-        
-        
-        
-        
 
-        if (Input.GetKeyDown(KeyCode.Space)) 
+
+
+
+
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(projectileObject,transform.position,projectileObject.transform.rotation);
+            Instantiate(projectileObject, transform.position, projectileObject.transform.rotation);
         }
     }
 
-    void SetCurrentRotation(float rot)
+    private void SetCurrentRotation(float rot)
     {
         currentRotation = Mathf.Clamp(rot, -45, 45);
         transform.rotation = Quaternion.Euler(0, rot, 0);
     }
 
-    void SetMovement()
+    private void SetMovement()
     {
         if ((transform.position.x > maxDistanceFromZero && horizontalInput > 0) ||
                 (transform.position.x < -maxDistanceFromZero && horizontalInput < 0))
@@ -71,5 +71,6 @@ public class PlayerController : MonoBehaviour
         transform.Translate(Vector3.right * lateralSpeed * horizontalInput * Time.deltaTime, Space.World);
     }
 
-    
+    public float GetMaxDistanceFromZero() { return maxDistanceFromZero; }
+
 }
