@@ -7,25 +7,28 @@ public class AnimalController : MonoBehaviour
     private PlayerController playerController;
 
     private bool isHungry = true;
-    private float speed = 5f;
-
+    private float speed = 4f;
+    private float actualSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        actualSpeed = speed;
     }
 
     // Update is called once per frame
     void Update()
+        
     {
-        if (isHungry && transform.position.x > -playerController.GetMaxDistanceFromZero())
+        if (isHungry && transform.position.x >= -10)
         {
-            transform.Translate(Vector3.left * speed * Time.deltaTime, Space.World);
+            actualSpeed = speed;
         }
-        else if (isHungry && transform.position.x < playerController.GetMaxDistanceFromZero()) {
-            transform.Translate(Vector3.left * -speed * Time.deltaTime, Space.World);
+        else if (isHungry && transform.position.x <= 10) {
+            actualSpeed = -speed;
         }
+        transform.position = new Vector3((transform.position.x + actualSpeed * Time.deltaTime), transform.position.y, transform.position.z);
     }
 
     public void Manger() {
