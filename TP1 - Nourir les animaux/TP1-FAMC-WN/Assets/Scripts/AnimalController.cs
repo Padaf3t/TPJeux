@@ -28,5 +28,7 @@ public class AnimalController : MonoBehaviour
         }
     }
 
-    public void Manger() { }
+    public void Manger() {
+        isHungry = false;
+    }
 }
