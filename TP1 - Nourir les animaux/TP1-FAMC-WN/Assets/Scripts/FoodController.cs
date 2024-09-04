@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class FoodController : MonoBehaviour
 {
+    private float speed = 20f;
+    private float zLimit = 20f;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +16,20 @@ public class FoodController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.World);
+        transform.Rotate(new Vector3 (1,1,1));
+        if(transform.position.z > zLimit)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("animal"))
+        {
+            //Add declaration to method in AnimalController
+            //other.gameObject.GetComponent<AnimalController>()
+        }
     }
 }
