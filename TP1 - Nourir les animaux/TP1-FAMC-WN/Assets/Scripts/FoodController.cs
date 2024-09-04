@@ -28,8 +28,8 @@ public class FoodController : MonoBehaviour
     {
         if(other.gameObject.CompareTag("animal"))
         {
-            //Add declaration to method in AnimalController
-            //other.gameObject.GetComponent<AnimalController>()
+            other.gameObject.GetComponent<AnimalController>().manger();
+            Destroy(gameObject);
         }
     }
 }
