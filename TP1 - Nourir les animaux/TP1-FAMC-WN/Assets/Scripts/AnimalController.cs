@@ -16,4 +16,6 @@ public class AnimalController : MonoBehaviour
     {
         
     }
+
+    public void manger() { }
 }
