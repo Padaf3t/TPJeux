@@ -29,7 +29,7 @@ public class AnimalSpawner : MonoBehaviour
             progress = 0f;
             SpawnObstacle();
 
-            nextDelay = Random.Range(0.85f * repeatDelay, 1.5f * repeatDelay);
+            nextDelay = Random.Range(0.85f * normalDelay, 1.5f * normalDelay);
         }
     }
 
