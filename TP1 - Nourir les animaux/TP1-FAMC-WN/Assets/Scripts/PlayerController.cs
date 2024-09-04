@@ -14,11 +14,6 @@ public class PlayerController : MonoBehaviour
     private float maxDistanceFromZero = 10f;
     public GameObject projectileObject;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
