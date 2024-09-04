@@ -8,7 +8,9 @@ public class PlayerController : MonoBehaviour
 
     private float horizontalInput;
     private float lateralSpeed = 10f;
-    private float turnDegree;
+    private float currentRotation;
+    private float rotationSpeed = 150;
+    private float rotationDirection;
     private float maxDistanceFromZero = 10f;
 
     // Start is called before the first frame update
@@ -21,25 +23,26 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         horizontalInput = Input.GetAxis("Horizontal");
+        rotationDirection = horizontalInput;
 
-        if((transform.position.x > maxDistanceFromZero && horizontalInput > 0) ||
-                (transform.position.x < -maxDistanceFromZero && horizontalInput < 0))
+        
+        
+        SetMovement();
+
+        if (horizontalInput == 0)
+        {
+            if (currentRotation < 0)
             {
-                horizontalInput = 0;
+                rotationDirection = 1;
             }
-
-        if(horizontalInput > 0)
-        {
-            //turnDe
+            else if (currentRotation > 0)
+            {
+                rotationDirection = -1;
+            }
         }
-        else if(horizontalInput < 0)
-        {
 
-        }
-        transform.Translate(Vector3.right * lateralSpeed * horizontalInput * Time.deltaTime, Space.World);
-        transform.Rotate(
-            new Vector3 (0,Mathf.Clamp(transform.eulerAngles.y, -45, 45),0),
-             horizontalInput * turnDegree * Time.deltaTime);
+        var newRotation = currentRotation + rotationDirection * rotationSpeed * Time.deltaTime;
+        SetCurrentRotation(newRotation);
         
         
         
@@ -49,6 +52,22 @@ public class PlayerController : MonoBehaviour
         {
             //Spawn bones
         }
+    }
+
+    void SetCurrentRotation(float rot)
+    {
+        currentRotation = Mathf.Clamp(rot, -45, 45);
+        transform.rotation = Quaternion.Euler(0, rot, 0);
+    }
+
+    void SetMovement()
+    {
+        if ((transform.position.x > maxDistanceFromZero && horizontalInput > 0) ||
+                (transform.position.x < -maxDistanceFromZero && horizontalInput < 0))
+        {
+            horizontalInput = 0;
+        }
+        transform.Translate(Vector3.right * lateralSpeed * horizontalInput * Time.deltaTime, Space.World);
     }
 
     
