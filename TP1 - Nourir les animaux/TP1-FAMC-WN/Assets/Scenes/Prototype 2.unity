@@ -355,6 +355,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Doge3
       objectReference: {fileID: 0}
+    - target: {fileID: 187016, guid: c35f3b540532d1747b95a8a2eea9991d, type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
     - target: {fileID: 495668, guid: c35f3b540532d1747b95a8a2eea9991d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -508,6 +512,10 @@ PrefabInstance:
     - target: {fileID: 187040, guid: 05554c72f25b7364caea91a88803135d, type: 3}
       propertyPath: m_Name
       value: Doge2
+      objectReference: {fileID: 0}
+    - target: {fileID: 187040, guid: 05554c72f25b7364caea91a88803135d, type: 3}
+      propertyPath: m_TagString
+      value: animal
       objectReference: {fileID: 0}
     - target: {fileID: 496630, guid: 05554c72f25b7364caea91a88803135d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -825,6 +833,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Doge1
       objectReference: {fileID: 0}
+    - target: {fileID: 179218, guid: 7e327461e79cb2a479e055d455c9a2fd, type: 3}
+      propertyPath: m_TagString
+      value: animal
+      objectReference: {fileID: 0}
     - target: {fileID: 410082, guid: 7e327461e79cb2a479e055d455c9a2fd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1052,6 +1064,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Doge 5
       objectReference: {fileID: 0}
+    - target: {fileID: 197258, guid: 782ffceb74ed3aa47a2a09261607aeb2, type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
     - target: {fileID: 436982, guid: 782ffceb74ed3aa47a2a09261607aeb2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1113,6 +1129,10 @@ PrefabInstance:
     - target: {fileID: 180406, guid: 3b3cb28f974c42c4481d72da460937c9, type: 3}
       propertyPath: m_Name
       value: Doge4
+      objectReference: {fileID: 0}
+    - target: {fileID: 180406, guid: 3b3cb28f974c42c4481d72da460937c9, type: 3}
+      propertyPath: m_TagString
+      value: Animal
       objectReference: {fileID: 0}
     - target: {fileID: 495300, guid: 3b3cb28f974c42c4481d72da460937c9, type: 3}
       propertyPath: m_LocalPosition.x

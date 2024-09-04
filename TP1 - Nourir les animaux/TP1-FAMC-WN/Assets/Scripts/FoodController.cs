@@ -21,7 +21,7 @@ public class FoodController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("animal"))
+        if(other.gameObject.CompareTag("Animal"))
         {
             other.gameObject.GetComponent<AnimalController>().Manger();
             Destroy(gameObject);
