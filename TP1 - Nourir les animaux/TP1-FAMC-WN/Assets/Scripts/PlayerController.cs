@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private float rotationSpeed = 150;
     private float rotationDirection;
     private float maxDistanceFromZero = 10f;
+    public GameObject projectileObject;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +51,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space)) 
         {
-            //Spawn bones
+            Instantiate(projectileObject,transform.position,projectileObject.transform.rotation);
         }
     }
 
