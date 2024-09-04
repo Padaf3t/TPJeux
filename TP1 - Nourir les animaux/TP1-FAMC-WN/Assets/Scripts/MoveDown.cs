@@ -4,34 +4,31 @@ using UnityEngine;
 
 public class MoveDown : MonoBehaviour
 {
-
+    public GameObject groundPrefab;
     public static PlayerController playerControllerScript;
 
-    private float speed = 2f;
+    private float speed = 10f;
     private float bottomBound = -40f;
-    private Vector3 startPosition;
-    private float repeatWidth;
-    // Start is called before the first frame update
-    void Start()
-    {
-        startPosition = transform.position;
-        repeatWidth = GetComponent<BoxCollider>().size.z*4f;
-       // InvokeRepeating("SpawnGround", 0f, 5f);
-    }
+    private float startPosition = 60f;
+
+
 
     // Update is called once per frame
     void Update()
     {//Add if function to deal with game over. 
 
         transform.Translate(Vector3.back * speed * Time.deltaTime);
-        if (transform.position.z < bottomBound && gameObject.CompareTag("Ground"))
+        if (groundPrefab.transform.position.z < bottomBound && gameObject.CompareTag("Ground"))
         {
-            Destroy(gameObject);
+            SpawnGround();
+            Destroy(groundPrefab);
         }
+
     }
 
     void SpawnGround()
     {
+        Instantiate(groundPrefab, new Vector3(0,0, startPosition), groundPrefab.transform.rotation);
 
     }
 }
