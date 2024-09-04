@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AnimalController : MonoBehaviour
 {
+    private PlayerController playerController;
+
     private bool isHungry = true;
     private float speed = 5f;
 
@@ -17,9 +19,12 @@ public class AnimalController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isHungry)
+        if (isHungry && transform.position.x > -playerController.GetMaxDistanceFromZero())
         {
-            transform.Translate(Vector3.left * speed * Time.deltaTime, Space.World )
+            transform.Translate(Vector3.left * speed * Time.deltaTime, Space.World);
+        }
+        else if (isHungry && transform.position.x < playerController.GetMaxDistanceFromZero()) {
+            transform.Translate(Vector3.left * -speed * Time.deltaTime, Space.World);
         }
     }
 
