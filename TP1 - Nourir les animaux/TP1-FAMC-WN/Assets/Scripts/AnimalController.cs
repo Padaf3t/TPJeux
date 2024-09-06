@@ -9,12 +9,14 @@ public class AnimalController : MonoBehaviour
     private bool isHungry = true;
     private float speed = 4f;
     private float actualSpeed;
+    private float maxDistanceFromZero;
 
     // Start is called before the first frame update
     void Start()
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         actualSpeed = speed;
+        maxDistanceFromZero = playerController.GetMaxDistanceFromZero();
     }
 
     // Update is called once per frame
@@ -23,7 +25,7 @@ public class AnimalController : MonoBehaviour
     {
         if (isHungry)
         {
-            if(transform.position.x <= -20 || transform.position.x >= 20)
+            if(transform.position.x <= -maxDistanceFromZero || transform.position.x >= maxDistanceFromZero)
             {
                 transform.Rotate(0, 180, 0);
                 speed = -speed;

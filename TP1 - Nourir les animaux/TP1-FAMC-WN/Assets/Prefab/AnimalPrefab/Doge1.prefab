@@ -2624,6 +2624,7 @@ GameObject:
   - component: {fileID: 7473925473274713280}
   - component: {fileID: 1343810721880702770}
   - component: {fileID: 8154108569400476219}
+  - component: {fileID: 8534355027972624169}
   m_Layer: 0
   m_Name: Doge1
   m_TagString: animal
@@ -2728,6 +2729,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 467134146582a16418f88826af5d4310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &8534355027972624169
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3253556518938865873}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1316117, y: 0.49807557, z: 0.26699185}
+  m_Center: {x: 0.00067387766, y: 0.25096256, z: 0.024146834}
 --- !u!1 &3662963321307242164
 GameObject:
   m_ObjectHideFlags: 0
