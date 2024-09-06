@@ -10,12 +10,14 @@ public class AnimalController : MonoBehaviour
     private float speed = 4f;
     private float actualSpeed;
     private float maxDistanceFromZero;
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         gameOverTrigger = GameObject.Find("GameOver Trigger").GetComponent<GameOverTrigger>();
+        animator = gameObject.GetComponent<Animator>();
         actualSpeed = speed;
         maxDistanceFromZero = playerController.GetMaxDistanceFromZero();
     }
@@ -37,9 +39,14 @@ public class AnimalController : MonoBehaviour
             }
 
             transform.Translate(Vector3.right * speed * Time.deltaTime, Space.World);
+        }else
+        {
+            animator.SetBool("Bark_b", true);
+
         }
     }
     public void Manger() {
         isHungry = false;
     }
+    public bool GetIsHungry() { return isHungry; }
 }
