@@ -5,7 +5,7 @@ using UnityEngine;
 public class MoveDown : MonoBehaviour
 {
     private GameOverTrigger gameOverTrigger;
-    private float speed = 10f;
+    private float speed = 1f;
     private float bottomBound = -40f;
     private Vector3 startPosition = new Vector3(0, 0, 60f);
 
