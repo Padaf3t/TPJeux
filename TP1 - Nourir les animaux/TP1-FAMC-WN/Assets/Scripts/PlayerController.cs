@@ -14,11 +14,13 @@ public class PlayerController : MonoBehaviour
     private float maxDistanceFromZero = 10f;
     private float distanceFromPlayer = 0.7f;
     public GameObject projectileObject;
+    private Animator playerAnim;
 
     // Start is called before the first frame update
     void Start()
     {
         gameOverTrigger = GameObject.Find("GameOver Trigger").GetComponent<GameOverTrigger>();
+        playerAnim = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -50,6 +52,11 @@ public class PlayerController : MonoBehaviour
             {
                 Instantiate(projectileObject, new Vector3(transform.position.x, transform.position.y, transform.position.z + distanceFromPlayer), projectileObject.transform.rotation);
             }
+        }
+        else
+        {
+            playerAnim.SetBool("Death_b",true);
+            playerAnim.SetInteger("DeathType_int",2);
         }
         
     }
