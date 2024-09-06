@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private float rotationSpeed = 150;
     private float rotationDirection;
     private float maxDistanceFromZero = 10f;
+    private float distanceFromPlayer = 0.7f;
     public GameObject projectileObject;
 
     // Start is called before the first frame update
@@ -51,7 +52,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(projectileObject, transform.position, projectileObject.transform.rotation);
+            Instantiate(projectileObject, new Vector3(transform.position.x, transform.position.y, transform.position.z + distanceFromPlayer), projectileObject.transform.rotation);
         }
     }
 

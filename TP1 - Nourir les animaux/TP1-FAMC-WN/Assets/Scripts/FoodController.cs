@@ -6,7 +6,7 @@ using UnityEngine;
 public class FoodController : MonoBehaviour
 {
     private float speed = 20f;
-    private float zLimit = 20f;
+    private float zLimit = 10f;
     
     // Update is called once per frame
     void Update()

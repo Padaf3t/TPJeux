@@ -21,14 +21,17 @@ public class AnimalController : MonoBehaviour
     void Update()
         
     {
-        if (isHungry && transform.position.x >= -10)
+        if (isHungry)
         {
-            actualSpeed = speed;
+            if(transform.position.x <= -20 || transform.position.x >= 20)
+            {
+                transform.Rotate(0, 180, 0);
+                speed = -speed;
+                //transform.rotation = new Quaternion(transform.rotation.x, -transform.rotation.y, transform.rotation.z, transform.rotation.w);
+            }
         }
-        else if (isHungry && transform.position.x <= 10) {
-            actualSpeed = -speed;
-        }
-        transform.position = new Vector3((transform.position.x + actualSpeed * Time.deltaTime), transform.position.y, transform.position.z);
+        
+        transform.Translate(Vector3.right * speed * Time.deltaTime, Space.World);
     }
 
     public void Manger() {
