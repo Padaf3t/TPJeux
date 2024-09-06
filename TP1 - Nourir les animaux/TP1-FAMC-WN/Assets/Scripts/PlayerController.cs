@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
+    private GameOverTrigger gameOverTrigger;
     private float horizontalInput;
     private float lateralSpeed = 10f;
     private float currentRotation;
@@ -18,42 +18,40 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        gameOverTrigger = GameObject.Find("GameOver Trigger").GetComponent<GameOverTrigger>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        rotationDirection = horizontalInput;
-
-
-
-        SetMovement();
-
-        if (horizontalInput == 0)
+        if (!gameOverTrigger.GetIsGameOver())
         {
-            if (currentRotation < 0)
+            horizontalInput = Input.GetAxisRaw("Horizontal");
+            rotationDirection = horizontalInput;
+
+            SetMovement();
+
+            if (horizontalInput == 0)
             {
-                rotationDirection = 1;
+                if (currentRotation < 0)
+                {
+                    rotationDirection = 1;
+                }
+                else if (currentRotation > 0)
+                {
+                    rotationDirection = -1;
+                }
             }
-            else if (currentRotation > 0)
+
+            var newRotation = currentRotation + rotationDirection * rotationSpeed * Time.deltaTime;
+            SetCurrentRotation(newRotation);
+
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                rotationDirection = -1;
+                Instantiate(projectileObject, new Vector3(transform.position.x, transform.position.y, transform.position.z + distanceFromPlayer), projectileObject.transform.rotation);
             }
         }
-
-        var newRotation = currentRotation + rotationDirection * rotationSpeed * Time.deltaTime;
-        SetCurrentRotation(newRotation);
-
-
-
-
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Instantiate(projectileObject, new Vector3(transform.position.x, transform.position.y, transform.position.z + distanceFromPlayer), projectileObject.transform.rotation);
-        }
+        
     }
 
     private void SetCurrentRotation(float rot)
