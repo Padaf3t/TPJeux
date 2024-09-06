@@ -10,7 +10,6 @@ public class AnimalSpawner : MonoBehaviour
     private float nextDelay;
     private float progress = 0f;
     private Vector3 spawnPos;
-    private float zPos = 30f;
     private PlayerController playerController;
     private float xMax;
     private float xMin;
@@ -51,7 +50,7 @@ public class AnimalSpawner : MonoBehaviour
     {
         GameObject animal = animals[(Random.Range(0, animals.Length))];
         var xPos = Random.Range(xMin, xMax);
-        spawnPos = new Vector3(xPos, 0, zPos);
+        spawnPos = new Vector3(xPos, 0, transform.position.z);
         Instantiate(animal, spawnPos, animal.transform.rotation);
 
     }
