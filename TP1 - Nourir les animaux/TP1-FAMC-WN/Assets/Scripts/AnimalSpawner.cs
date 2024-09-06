@@ -5,7 +5,7 @@ using UnityEngine;
 public class AnimalSpawner : MonoBehaviour
 {
     public GameObject[] animals;
-
+    private GameOverTrigger gameOverTrigger;
     private float normalDelay = 2f;
     private float nextDelay;
     private float progress = 0f;
@@ -21,6 +21,7 @@ public class AnimalSpawner : MonoBehaviour
     void Start()
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        gameOverTrigger = GameObject.Find("GameOver Trigger").GetComponent<GameOverTrigger>();
         xMax = playerController.GetMaxDistanceFromZero()-1;
         xMin = -xMax;
     }
@@ -28,21 +29,24 @@ public class AnimalSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        progress += Time.deltaTime;
-        difficultyProgress += Time.deltaTime;
-
-        if (progress >= nextDelay)
+        if (!gameOverTrigger.GetIsGameOver())
         {
-            progress = 0f;
-            SpawnObstacle();
+            progress += Time.deltaTime;
+            difficultyProgress += Time.deltaTime;
 
-            nextDelay = Random.Range(0.50f * normalDelay, 1.5f * normalDelay);
-        }
+            if (progress >= nextDelay)
+            {
+                progress = 0f;
+                SpawnObstacle();
 
-        if(difficultyProgress >= timeBetweenDifficulty)
-        {
-            difficultyProgress = 0f;
-            normalDelay *= 0.95f;
+                nextDelay = Random.Range(0.50f * normalDelay, 1.5f * normalDelay);
+            }
+
+            if (difficultyProgress >= timeBetweenDifficulty)
+            {
+                difficultyProgress = 0f;
+                normalDelay *= 0.95f;
+            }
         }
     }
 
