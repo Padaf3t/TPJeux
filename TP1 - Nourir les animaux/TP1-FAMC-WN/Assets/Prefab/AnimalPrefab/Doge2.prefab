@@ -754,7 +754,7 @@ GameObject:
   - component: {fileID: 4025699599159191434}
   m_Layer: 0
   m_Name: Doge2
-  m_TagString: animal
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

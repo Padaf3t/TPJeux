@@ -21,7 +21,7 @@ public class AnimalSpawner : MonoBehaviour
     void Start()
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        xMax = playerController.GetMaxDistanceFromZero();
+        xMax = playerController.GetMaxDistanceFromZero()-1;
         xMin = -xMax;
     }
 
