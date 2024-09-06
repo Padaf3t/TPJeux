@@ -49,7 +49,7 @@ public class AnimalSpawner : MonoBehaviour
 
     private void SpawnObstacle()
     {
-        GameObject animal = animals[(Random.Range(0, animals.Length - 1))];
+        GameObject animal = animals[(Random.Range(0, animals.Length))];
         var xPos = Random.Range(xMin, xMax);
         spawnPos = new Vector3(xPos, 0, zPos);
         Instantiate(animal, spawnPos, animal.transform.rotation);
