@@ -20,7 +20,15 @@ public class GameOverTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Animal")){
-            isGameOver = true;
+            if(other.gameObject.GetComponent<AnimalController>().GetIsHungry())
+            {
+                isGameOver = true;
+            }
+            else
+            {
+                Destroy(other.gameObject);
+            }
+            
         }
     }
     public bool GetIsGameOver()
