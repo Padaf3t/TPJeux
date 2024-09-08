@@ -6,7 +6,6 @@ public class GameOverTrigger : MonoBehaviour
 {
     private bool isGameOver = false;
     public AudioSource audioSource;
-    public AudioClip gameOverClip;
 
     private void OnTriggerEnter(Collider other)
     {
