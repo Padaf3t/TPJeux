@@ -1057,10 +1057,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6251ca2703b019c48aa24ae2915a3953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwBoneParticle: {fileID: 2067588818}
   projectileObject: {fileID: 401769237073796777, guid: 7d885f6f9c876504686cfb258f5ac47f, type: 3}
   playerAudio: {fileID: 1947075629}
-  audioTir: {fileID: 8300000, guid: 9634f8046e07b32458018ff4ab0b1c17, type: 3}
+  throwAudio: {fileID: 8300000, guid: 9634f8046e07b32458018ff4ab0b1c17, type: 3}
+  throwBoneParticle: {fileID: 2067588818}
 --- !u!82 &1947075629
 AudioSource:
   m_ObjectHideFlags: 0
