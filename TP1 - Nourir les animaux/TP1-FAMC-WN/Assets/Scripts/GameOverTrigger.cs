@@ -5,20 +5,10 @@ using UnityEngine;
 public class GameOverTrigger : MonoBehaviour
 {
     private bool isGameOver = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter(Collider other)
     {
+        //Check if the animal is hungry, set a game over if yes, destroy the animal if not
         if(other.gameObject.CompareTag("Animal")){
             if(other.gameObject.GetComponent<AnimalController>().GetIsHungry())
             {
