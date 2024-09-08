@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     //reference
     private GameOverTrigger gameOverTrigger;
     private Animator playerAnim;
+    public ParticleSystem throwBoneParticle;
     //movement
     private float horizontalInput;
     private float lateralSpeed = 10f;
@@ -47,6 +48,7 @@ public class PlayerController : MonoBehaviour
             {
                 playerAudio.PlayOneShot(audioTir);
                 Instantiate(projectileObject, new Vector3(transform.position.x, transform.position.y, transform.position.z + distanceFromPlayer), projectileObject.transform.rotation);
+                throwBoneParticle.Play();
             }
         }
         else
