@@ -14,7 +14,7 @@ public class AnimalController : MonoBehaviour
     private float maxSpeed = 6f;
     private float minSpeed = 2f;
     private float actualSpeed;
-    private float notHungrySpeed = 8f;
+    private float notHungrySpeedMultiplier = 2f;
     //Eating
     private bool isHungry = true;
     private float eatTimerMax = 1f;
@@ -53,7 +53,6 @@ public class AnimalController : MonoBehaviour
                 {
                     transform.Rotate(0, 180, 0);
                     speed = -speed;
-                    notHungrySpeed = speed * 2;
                 }
                 actualSpeed = speed;
             }
@@ -79,7 +78,7 @@ public class AnimalController : MonoBehaviour
         else
         {
             animator.SetBool("Eat_b", false);
-            actualSpeed = notHungrySpeed;
+            actualSpeed = speed * notHungrySpeedMultiplier;
         }
     }
 
