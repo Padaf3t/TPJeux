@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameOverTrigger : MonoBehaviour
 {
     private bool isGameOver = false;
+    public AudioSource audioSource;
+    public AudioClip gameOverClip;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -12,6 +14,7 @@ public class GameOverTrigger : MonoBehaviour
         if(other.gameObject.CompareTag("Animal")){
             if(other.gameObject.GetComponent<AnimalController>().GetIsHungry())
             {
+                audioSource.Play();
                 isGameOver = true;
             }
         }
