@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
+    //reference
     private GameOverTrigger gameOverTrigger;
-    //movement variable
+    private Animator playerAnim;
+    //movement
     private float horizontalInput;
     private float lateralSpeed = 10f;
     private float maxDistanceFromZero = 10f;
@@ -15,15 +16,14 @@ public class PlayerController : MonoBehaviour
     private float currentRotation;
     private float rotationSpeed = 150;
     private float rotationDirection;
-    //Projectile variable
-    private float distanceFromPlayer = 0.7f;
+    //Projectile
     [SerializeReference]private GameObject projectileObject;
-    //Animation
-    private Animator playerAnim;
+    private float distanceFromPlayer = 0.7f;
 
     // Start is called before the first frame update
     void Start()
     {
+        //Set the reference
         gameOverTrigger = GameObject.Find("GameOver Trigger").GetComponent<GameOverTrigger>();
         playerAnim = gameObject.GetComponent<Animator>();
     }
