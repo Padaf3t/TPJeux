@@ -16,13 +16,13 @@ public class PlayerController : MonoBehaviour
     private float currentRotation;
     private float rotationSpeed = 150;
     private float rotationDirection;
-    //Projectile
+    //projectile
     [SerializeReference]private GameObject projectileObject;
     private float distanceFromPlayer = 0.7f;
-    //Sound
+    //sound
     public AudioSource playerAudio;
     public AudioClip throwAudio;
-    //Particles
+    //particles
     public ParticleSystem throwBoneParticle;
 
     // Start is called before the first frame update
@@ -35,7 +35,8 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {//set player movement and rotation while game is not in game over
+    {
+        //let player set action while game is not in game over
         if (!gameOverTrigger.GetIsGameOver())
         {
             horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -44,7 +45,7 @@ public class PlayerController : MonoBehaviour
             SetMovement();
 
             SetRotation();
-            //Throws projectile on space press
+            //Throws projectile on space press, play a sound and play particles
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 playerAudio.PlayOneShot(throwAudio);
@@ -61,9 +62,12 @@ public class PlayerController : MonoBehaviour
         }
         
     }
-    //stops player from moving beyond screen boundaries
+    /// <summary>
+    /// Set the movement of the player
+    /// </summary>
     private void SetMovement()
     {
+        //Stops player from moving beyond screen boundaries
         if ((transform.position.x > xBoudaries && horizontalInput > 0) ||
                 (transform.position.x < -xBoudaries && horizontalInput < 0))
         {
@@ -72,9 +76,12 @@ public class PlayerController : MonoBehaviour
         transform.Translate(Vector3.right * lateralSpeed * horizontalInput * Time.deltaTime, Space.World);
     }
 
-    //Rotates player back to 0 when not moving
+    /// <summary>
+    /// set the rotation of the player
+    /// </summary>
     private void SetRotation()
     {
+        //if the player is not moving, make the player look forward
         if (horizontalInput == 0)
         {
             if (currentRotation < 0)
@@ -87,13 +94,20 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        var newRotation = currentRotation + rotationDirection * rotationSpeed * Time.deltaTime;
+        //get the rotation degree from the current rotation and input from player
+        float newRotation = currentRotation + rotationDirection * rotationSpeed * Time.deltaTime;
 
+        //set the rotation degree between -45degree and 45degree
         currentRotation = Mathf.Clamp(newRotation, -45, 45);
+
+        //rotate the player
         transform.rotation = Quaternion.Euler(0, newRotation, 0);
     }
-    //Boundaries used in animal controller
 
+    /// <summary>
+    /// get the xBoundaries of the player
+    /// </summary>
+    /// <returns>the boundaries to get it in other scripts</returns>
     public float GetXBoudaries() { return xBoudaries; }
 
 }
