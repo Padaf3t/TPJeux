@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class AnimalSpawner : MonoBehaviour
 {
+    //reference
     public GameObject[] animals;
     private GameOverTrigger gameOverTrigger;
+    private PlayerController playerController;
+    //delay
     private float normalDelay = 2f;
     private float nextDelay;
     private float progress = 0f;
+    //spawn
+    private float xBoundaries;
     private Vector3 spawnPos;
-    private PlayerController playerController;
-    private float xMax;
-    private float xMin;
+    private float[] rotationDirectionTab = { -1, 1 };
+    //difficulty
     private float timeBetweenDifficulty = 15.0f;
     private float difficultyProgress = 0.0f;
     
@@ -22,8 +26,10 @@ public class AnimalSpawner : MonoBehaviour
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         gameOverTrigger = GameObject.Find("GameOver Trigger").GetComponent<GameOverTrigger>();
-        xMax = playerController.GetMaxDistanceFromZero()-1;
-        xMin = -xMax;
+
+        xBoundaries = playerController.GetMaxDistanceFromZero()-1;
+
+        nextDelay = Random.Range(0.50f * normalDelay, 1.5f * normalDelay);
     }
 
     // Update is called once per frame
@@ -31,8 +37,7 @@ public class AnimalSpawner : MonoBehaviour
     {
         if (!gameOverTrigger.GetIsGameOver())
         {
-            progress += Time.deltaTime;
-            difficultyProgress += Time.deltaTime;
+            UpdateTimer();
 
             if (progress >= nextDelay)
             {
@@ -50,10 +55,21 @@ public class AnimalSpawner : MonoBehaviour
         }
     }
 
+    private void UpdateTimer()
+    {
+        progress += Time.deltaTime;
+        difficultyProgress += Time.deltaTime;
+    }
+
     private void SpawnObstacle()
     {
         GameObject animal = animals[(Random.Range(0, animals.Length))];
-        var xPos = Random.Range(xMin, xMax);
+        float xPos = Random.Range(-xBoundaries, xBoundaries);
+
+        float rotationDirection = rotationDirectionTab[(Random.Range(0, rotationDirectionTab.Length))];
+        animal.transform.rotation = new Quaternion(
+            animal.transform.rotation.x, animal.transform.rotation.y * rotationDirection, animal.transform.rotation.z, animal.transform.rotation.w);
+        
         spawnPos = new Vector3(xPos, 0, transform.position.z);
         Instantiate(animal, spawnPos, animal.transform.rotation);
 

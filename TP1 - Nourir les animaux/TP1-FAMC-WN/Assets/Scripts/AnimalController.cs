@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class AnimalController : MonoBehaviour
 {
+    //reference
     private PlayerController playerController;
     private GameOverTrigger gameOverTrigger;
-    private bool isHungry = true;
-    private float speed = 4f;
+    public Animator animator;
+    //speed and movement
+    private float xBoudaries;
+    private float speed;
+    private float maxSpeed = 6f;
+    private float minSpeed = 2f;
     private float actualSpeed;
     private float notHungrySpeed = 8f;
-    private float maxDistanceFromZero;
-    public Animator animator;
+    //Eating
+    private bool isHungry = true;
     private float eatTimerMax = 1f;
     private float eatTimer = 0f;
 
@@ -19,11 +24,19 @@ public class AnimalController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Get reference
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         gameOverTrigger = GameObject.Find("GameOver Trigger").GetComponent<GameOverTrigger>();
         animator = gameObject.GetComponent<Animator>();
+        xBoudaries = playerController.GetMaxDistanceFromZero();
+
+        //Set a random speed
+        speed = Random.Range(minSpeed, maxSpeed);
+        if(transform.rotation.y < 0)
+        {
+            speed = -speed;
+        }
         actualSpeed = speed;
-        maxDistanceFromZero = playerController.GetMaxDistanceFromZero();
     }
 
     // Update is called once per frame
@@ -34,40 +47,42 @@ public class AnimalController : MonoBehaviour
 
         if (!gameOverTrigger.GetIsGameOver())
         {
-            if (isHungry )
+            if (isHungry)
             {
-                
-                if (transform.position.x <= -maxDistanceFromZero || transform.position.x >= maxDistanceFromZero)
+                if (transform.position.x <= -xBoudaries || transform.position.x >= xBoudaries)
                 {
                     transform.Rotate(0, 180, 0);
                     speed = -speed;
-                    notHungrySpeed = -notHungrySpeed;
-                    //transform.rotation = new Quaternion(transform.rotation.x, -transform.rotation.y, transform.rotation.z, transform.rotation.w);
+                    notHungrySpeed = speed * 2;
                 }
                 actualSpeed = speed;
             }
             else
             {
-                if(eatTimer < eatTimerMax)
-                {
-                    animator.SetBool("Eat_b", true);
-                    eatTimer += Time.deltaTime;
-                    actualSpeed = 0f;
-                }
-                else
-                {
-                    animator.SetBool("Eat_b", false);
-                    actualSpeed = notHungrySpeed;
-                }
+                CheckEatingStatus();
             }
             transform.Translate(Vector3.right * actualSpeed * Time.deltaTime, Space.World);
         }else
         {
             animator.SetBool("Bark_b", true);
-
         }
         
     }
+    private void CheckEatingStatus()
+    {
+        if (eatTimer < eatTimerMax)
+        {
+            animator.SetBool("Eat_b", true);
+            eatTimer += Time.deltaTime;
+            actualSpeed = 0f;
+        }
+        else
+        {
+            animator.SetBool("Eat_b", false);
+            actualSpeed = notHungrySpeed;
+        }
+    }
+
     public void Manger() {
         isHungry = false;
     }
