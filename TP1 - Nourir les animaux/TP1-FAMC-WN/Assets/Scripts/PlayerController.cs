@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     //movement
     private float horizontalInput;
     private float lateralSpeed = 10f;
-    private float maxDistanceFromZero = 10f;
+    private float xBoudaries = 10f;
     //rotation
     private float currentRotation;
     private float rotationSpeed = 150;
@@ -62,8 +62,8 @@ public class PlayerController : MonoBehaviour
 
     private void SetMovement()
     {
-        if ((transform.position.x > maxDistanceFromZero && horizontalInput > 0) ||
-                (transform.position.x < -maxDistanceFromZero && horizontalInput < 0))
+        if ((transform.position.x > xBoudaries && horizontalInput > 0) ||
+                (transform.position.x < -xBoudaries && horizontalInput < 0))
         {
             horizontalInput = 0;
         }
@@ -90,6 +90,6 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, newRotation, 0);
     }
 
-    public float GetMaxDistanceFromZero() { return maxDistanceFromZero; }
+    public float GetXBoudaries() { return xBoudaries; }
 
 }

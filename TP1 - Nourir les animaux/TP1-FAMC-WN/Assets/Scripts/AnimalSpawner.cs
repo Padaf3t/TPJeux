@@ -29,7 +29,7 @@ public class AnimalSpawner : MonoBehaviour
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         gameOverTrigger = GameObject.Find("GameOver Trigger").GetComponent<GameOverTrigger>();
 
-        xBoundaries = playerController.GetMaxDistanceFromZero()-1;
+        xBoundaries = playerController.GetXBoudaries() - 1;
 
         nextDelay = Random.Range(0.50f * normalDelay, 1.5f * normalDelay);
     }

@@ -37,7 +37,7 @@ public class AnimalController : MonoBehaviour
         gameOverTrigger = GameObject.Find("GameOver Trigger").GetComponent<GameOverTrigger>();
         audioSource = GameObject.Find("Main Camera").GetComponent<AudioSource>();
         animator = gameObject.GetComponent<Animator>();
-        xBoudaries = playerController.GetMaxDistanceFromZero() - 1;
+        xBoudaries = playerController.GetXBoudaries() - 1;
 
         //Set a random base speed
         speed = Random.Range(minSpeed, maxSpeed);
@@ -58,7 +58,7 @@ public class AnimalController : MonoBehaviour
         {
             if (isHungry)
             {
-                //Rotate the animal when it get to the screen boundries
+                //Rotate the animal when it get to the screen boundaries
                 if (transform.position.x <= -xBoudaries || transform.position.x >= xBoudaries)
                 {
                     transform.Rotate(0, 180, 0);
@@ -84,11 +84,7 @@ public class AnimalController : MonoBehaviour
             {
                 audioSource.Play();
             }
-            
         }
-
-
-
 
     }
 
