@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour
     //movement
     private float horizontalInput;
     private float lateralSpeed = 10f;
-    private float xBoudaries = 10f;
+    //movement boundaries, static for other script to get it
+    public static float xBoudaries = 10f;
     //rotation
     private float currentRotation;
     private float rotationSpeed = 150;
@@ -101,11 +102,5 @@ public class PlayerController : MonoBehaviour
         //rotate the player
         transform.rotation = Quaternion.Euler(0, newRotation, 0);
     }
-
-    /// <summary>
-    /// get the xBoundaries of the player
-    /// </summary>
-    /// <returns>the boundaries to get it in other scripts</returns>
-    public float GetXBoudaries() { return xBoudaries; }
 
 }

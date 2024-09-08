@@ -9,13 +9,13 @@ public class AnimalSpawner : MonoBehaviour
 {
     //reference
     public GameObject[] animals;
-    private PlayerController playerController;
     //delay
     private float normalDelay = 2f;
     private float nextDelay;
     private float progress = 0f;
     //spawn
     private float xBoundaries;
+    private float safeDistance = 1f;
     private float[] rotationDirectionTab = { -1, 1 };
     //difficulty
     private float timeBetweenDifficulty = 15.0f;
@@ -25,10 +25,7 @@ public class AnimalSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-
-        xBoundaries = playerController.GetXBoudaries() - 1;
-
+        xBoundaries = PlayerController.xBoudaries - safeDistance;
         nextDelay = Random.Range(0.50f * normalDelay, 1.5f * normalDelay);
     }
 

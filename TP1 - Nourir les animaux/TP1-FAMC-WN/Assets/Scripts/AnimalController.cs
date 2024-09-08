@@ -9,7 +9,6 @@ using UnityEngine;
 public class AnimalController : MonoBehaviour
 {
     //reference
-    private PlayerController playerController;
     private Animator animator;
     //speed and movement
     private float xBoudaries;
@@ -32,10 +31,8 @@ public class AnimalController : MonoBehaviour
     void Start()
     {
         //Get reference
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        audioSource = GameObject.Find("Main Camera").GetComponent<AudioSource>();
         animator = gameObject.GetComponent<Animator>();
-        xBoudaries = playerController.GetXBoudaries() - 1;
+        xBoudaries = PlayerController.xBoudaries;
 
         //Set a random base speed
         speed = Random.Range(minSpeed, maxSpeed);
