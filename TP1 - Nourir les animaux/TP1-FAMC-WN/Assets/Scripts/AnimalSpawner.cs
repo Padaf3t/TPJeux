@@ -14,7 +14,6 @@ public class AnimalSpawner : MonoBehaviour
     private float progress = 0f;
     //spawn
     private float xBoundaries;
-    private Vector3 spawnPos;
     private float[] rotationDirectionTab = { -1, 1 };
     //difficulty
     private float timeBetweenDifficulty = 15.0f;
@@ -64,13 +63,15 @@ public class AnimalSpawner : MonoBehaviour
     private void SpawnObstacle()
     {
         GameObject animal = animals[(Random.Range(0, animals.Length))];
+
         float xPos = Random.Range(-xBoundaries, xBoundaries);
+        Vector3 spawnPos = new Vector3(xPos, 0, transform.position.z);
 
         float rotationDirection = rotationDirectionTab[(Random.Range(0, rotationDirectionTab.Length))];
-        
-        spawnPos = new Vector3(xPos, 0, transform.position.z);
-        Instantiate(animal, spawnPos, new Quaternion(
-            animal.transform.rotation.x, animal.transform.rotation.y * rotationDirection, animal.transform.rotation.z, animal.transform.rotation.w));
+        Quaternion animalRotation = new Quaternion(
+            animal.transform.rotation.x, animal.transform.rotation.y * rotationDirection, animal.transform.rotation.z, animal.transform.rotation.w);
+
+        Instantiate(animal, spawnPos, animalRotation);
 
     }
 }
