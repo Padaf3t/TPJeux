@@ -14,11 +14,6 @@ public class GameOverTrigger : MonoBehaviour
             {
                 isGameOver = true;
             }
-            else
-            {
-                Destroy(other.gameObject);
-            }
-            
         }
     }
     public bool GetIsGameOver()

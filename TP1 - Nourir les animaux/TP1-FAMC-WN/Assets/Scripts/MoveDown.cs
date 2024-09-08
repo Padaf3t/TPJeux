@@ -9,6 +9,7 @@ public class MoveDown : MonoBehaviour
     //movement
     private float speed = -1f; //negative speed needed to go down
     private float bottomBound = -40f;
+    private float destroyLimit = -20f;
     private Vector3 startPosition = new Vector3(0, 0, 60f);
 
     private void Start()
@@ -26,6 +27,11 @@ public class MoveDown : MonoBehaviour
             {
                 transform.position = startPosition;
             }
+            else if(gameObject.CompareTag("Animal") && transform.position.z < destroyLimit)
+            {
+                Destroy(gameObject);
+            }
+               
         }
     }
 }
