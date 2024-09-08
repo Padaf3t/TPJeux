@@ -67,11 +67,10 @@ public class AnimalSpawner : MonoBehaviour
         float xPos = Random.Range(-xBoundaries, xBoundaries);
 
         float rotationDirection = rotationDirectionTab[(Random.Range(0, rotationDirectionTab.Length))];
-        animal.transform.rotation = new Quaternion(
-            animal.transform.rotation.x, animal.transform.rotation.y * rotationDirection, animal.transform.rotation.z, animal.transform.rotation.w);
         
         spawnPos = new Vector3(xPos, 0, transform.position.z);
-        Instantiate(animal, spawnPos, animal.transform.rotation);
+        Instantiate(animal, spawnPos, new Quaternion(
+            animal.transform.rotation.x, animal.transform.rotation.y * rotationDirection, animal.transform.rotation.z, animal.transform.rotation.w));
 
     }
 }
