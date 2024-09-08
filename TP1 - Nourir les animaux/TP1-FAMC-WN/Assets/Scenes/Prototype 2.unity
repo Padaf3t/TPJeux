@@ -226,7 +226,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 147747847560613284, guid: f5909361111c43243bd645aebea0f971, type: 3}
       propertyPath: m_Name
-      value: Particle System
+      value: Throw Particule
       objectReference: {fileID: 0}
     - target: {fileID: 8472816614192253437, guid: f5909361111c43243bd645aebea0f971, type: 3}
       propertyPath: m_LocalPosition.x

@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private float rotationSpeed = 150;
     private float rotationDirection;
     //projectile
-    [SerializeReference]private GameObject projectileObject;
+    public GameObject projectileObject;
     private float distanceFromPlayer = 0.7f;
     //sound
     public AudioSource playerAudio;
