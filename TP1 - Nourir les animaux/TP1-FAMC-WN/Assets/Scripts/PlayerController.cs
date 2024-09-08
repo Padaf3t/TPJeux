@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {//set player movement and rotation while game is not in game over
         if (!gameOverTrigger.GetIsGameOver())
         {
             horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
             SetMovement();
 
             SetRotation();
-
+            //Throws projectile on space press
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 playerAudio.PlayOneShot(throwAudio);
@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
         }
         
     }
-
+    //stops player from moving beyond screen boundaries
     private void SetMovement()
     {
         if ((transform.position.x > xBoudaries && horizontalInput > 0) ||
@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
         transform.Translate(Vector3.right * lateralSpeed * horizontalInput * Time.deltaTime, Space.World);
     }
 
+    //Rotates player back to 0 when not moving
     private void SetRotation()
     {
         if (horizontalInput == 0)
@@ -89,6 +90,7 @@ public class PlayerController : MonoBehaviour
         currentRotation = Mathf.Clamp(newRotation, -45, 45);
         transform.rotation = Quaternion.Euler(0, newRotation, 0);
     }
+    //Boundaries used in animal controller
 
     public float GetXBoudaries() { return xBoudaries; }
 
