@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     private float distanceFromPlayer = 0.7f;
     //Sound
     public AudioSource playerAudio;
-    public AudioClip audioTir;
+    public AudioClip throwAudio;
     //Particles
     public ParticleSystem throwBoneParticle;
 
@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                playerAudio.PlayOneShot(audioTir);
+                playerAudio.PlayOneShot(throwAudio);
                 Instantiate(projectileObject, new Vector3(transform.position.x, transform.position.y, transform.position.z + distanceFromPlayer), projectileObject.transform.rotation);
                 throwBoneParticle.Play();
             }
