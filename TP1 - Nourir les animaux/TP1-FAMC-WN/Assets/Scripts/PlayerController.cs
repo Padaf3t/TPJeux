@@ -48,8 +48,10 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 playerAudio.PlayOneShot(throwAudio);
-                Instantiate(projectileObject, new Vector3(transform.position.x, transform.position.y, transform.position.z + distanceFromPlayer), projectileObject.transform.rotation);
                 throwBoneParticle.Play();
+
+                Vector3 throwPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z + distanceFromPlayer);
+                Instantiate(projectileObject, throwPosition, projectileObject.transform.rotation);
             }
         }
         else
