@@ -26,6 +26,7 @@ public class AnimalController : MonoBehaviour
     //Sound
     public AudioSource audioSource;
     public AudioClip eatAudio;
+    public AudioClip barkAudio;
 
 
     // Start is called before the first frame update
@@ -36,7 +37,7 @@ public class AnimalController : MonoBehaviour
         gameOverTrigger = GameObject.Find("GameOver Trigger").GetComponent<GameOverTrigger>();
         audioSource = GameObject.Find("Main Camera").GetComponent<AudioSource>();
         animator = gameObject.GetComponent<Animator>();
-        xBoudaries = playerController.GetMaxDistanceFromZero();
+        xBoudaries = playerController.GetMaxDistanceFromZero() - 1;
 
         //Set a random base speed
         speed = Random.Range(minSpeed, maxSpeed);
@@ -76,6 +77,14 @@ public class AnimalController : MonoBehaviour
         {
             //Set the bark animation to the animal
             animator.SetBool("Bark_b", true);
+            audioSource.clip = barkAudio;
+            audioSource.loop = true;
+
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+            
         }
 
 
