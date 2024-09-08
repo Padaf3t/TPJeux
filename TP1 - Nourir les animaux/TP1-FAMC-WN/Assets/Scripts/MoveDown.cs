@@ -4,24 +4,18 @@ using UnityEngine;
 
 public class MoveDown : MonoBehaviour
 {
-    //reference
-    private GameOverTrigger gameOverTrigger;
     //movement
-    private float speed = -1f; //negative speed needed to go down
+    private float speed = -10f; //negative speed needed to go down
     private float bottomBound = -40f;
     private float destroyLimit = -20f;
     private Vector3 startPosition = new Vector3(0, 0, 60f);
 
-    private void Start()
-    {
-        gameOverTrigger = GameObject.Find("GameOver Trigger").GetComponent<GameOverTrigger>();
-    }
 
     // Update is called once per frame
     void Update()
     { 
         //Move down if it's not a game over
-        if (!gameOverTrigger.GetIsGameOver())
+        if (!GameOverTrigger.isGameOver)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + speed * Time.deltaTime);
             //Restart the position of ground if it gets past the foreground

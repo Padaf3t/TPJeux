@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     //reference
-    private GameOverTrigger gameOverTrigger;
     private Animator playerAnim;
     //movement
     private float horizontalInput;
@@ -29,7 +28,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         //Set the reference
-        gameOverTrigger = GameObject.Find("GameOver Trigger").GetComponent<GameOverTrigger>();
         playerAnim = gameObject.GetComponent<Animator>();
     }
 
@@ -37,7 +35,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //let player set action while game is not in game over
-        if (!gameOverTrigger.GetIsGameOver())
+        if (!GameOverTrigger.isGameOver)
         {
             horizontalInput = Input.GetAxisRaw("Horizontal");
             rotationDirection = horizontalInput;

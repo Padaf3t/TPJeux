@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameOverTrigger : MonoBehaviour
 {
-    private bool isGameOver = false;
+    public static bool isGameOver = false;
     public AudioSource audioSource;
 
     private void OnTriggerEnter(Collider other)
@@ -17,9 +17,5 @@ public class GameOverTrigger : MonoBehaviour
                 isGameOver = true;
             }
         }
-    }
-    public bool GetIsGameOver()
-    {
-        return isGameOver;
     }
 }

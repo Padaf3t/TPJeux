@@ -10,7 +10,6 @@ public class AnimalController : MonoBehaviour
 {
     //reference
     private PlayerController playerController;
-    private GameOverTrigger gameOverTrigger;
     private Animator animator;
     //speed and movement
     private float xBoudaries;
@@ -34,7 +33,6 @@ public class AnimalController : MonoBehaviour
     {
         //Get reference
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        gameOverTrigger = GameObject.Find("GameOver Trigger").GetComponent<GameOverTrigger>();
         audioSource = GameObject.Find("Main Camera").GetComponent<AudioSource>();
         animator = gameObject.GetComponent<Animator>();
         xBoudaries = playerController.GetXBoudaries() - 1;
@@ -54,7 +52,7 @@ public class AnimalController : MonoBehaviour
     {
         animator.SetFloat("Speed_f", actualSpeed);
 
-        if (!gameOverTrigger.GetIsGameOver())
+        if (!GameOverTrigger.isGameOver)
         {
             if (isHungry)
             {

@@ -9,7 +9,6 @@ public class AnimalSpawner : MonoBehaviour
 {
     //reference
     public GameObject[] animals;
-    private GameOverTrigger gameOverTrigger;
     private PlayerController playerController;
     //delay
     private float normalDelay = 2f;
@@ -27,7 +26,6 @@ public class AnimalSpawner : MonoBehaviour
     void Start()
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        gameOverTrigger = GameObject.Find("GameOver Trigger").GetComponent<GameOverTrigger>();
 
         xBoundaries = playerController.GetXBoudaries() - 1;
 
@@ -37,7 +35,7 @@ public class AnimalSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!gameOverTrigger.GetIsGameOver())
+        if (!GameOverTrigger.isGameOver)
         {
             UpdateTimer();
 
