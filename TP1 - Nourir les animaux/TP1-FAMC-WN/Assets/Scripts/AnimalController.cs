@@ -57,7 +57,7 @@ public class AnimalController : MonoBehaviour
         {
             if (isHungry)
             {
-                //Rotate the animal when it get to the boundaries
+                //Rotate the animal when it get to the screen boundries
                 if (transform.position.x <= -xBoudaries || transform.position.x >= xBoudaries)
                 {
                     transform.Rotate(0, 180, 0);

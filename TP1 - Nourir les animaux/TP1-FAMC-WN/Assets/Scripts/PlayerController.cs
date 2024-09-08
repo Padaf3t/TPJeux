@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
     //reference
     private GameOverTrigger gameOverTrigger;
     private Animator playerAnim;
-    public ParticleSystem throwBoneParticle;
     //movement
     private float horizontalInput;
     private float lateralSpeed = 10f;
@@ -23,6 +22,8 @@ public class PlayerController : MonoBehaviour
     //Sound
     public AudioSource playerAudio;
     public AudioClip audioTir;
+    //Particles
+    public ParticleSystem throwBoneParticle;
 
     // Start is called before the first frame update
     void Start()

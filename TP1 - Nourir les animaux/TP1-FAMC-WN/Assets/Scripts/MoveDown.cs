@@ -24,12 +24,12 @@ public class MoveDown : MonoBehaviour
         if (!gameOverTrigger.GetIsGameOver())
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + speed * Time.deltaTime);
-            //Restart the position of ground if get to the bottomBound
+            //Restart the position of ground if it gets past the foreground
             if (gameObject.CompareTag("Ground") && transform.position.z < bottomBound)
             {
                 transform.position = startPosition;
             }
-            //Destroy the animal if get out of bottom screen
+            //Destroy the animal if gets past the foreground
             else if(gameObject.CompareTag("Animal") && transform.position.z < destroyLimit)
             {
                 Destroy(gameObject);

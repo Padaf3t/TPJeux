@@ -24,7 +24,7 @@ public class FoodController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //call manger function if the other collider if an animal and destroy this gameObject
+        //call manger function if the other collider is an animal and destroy this gameObject
         if(other.gameObject.CompareTag("Animal"))
         {
             AnimalController animalControllerScript = other.gameObject.GetComponent<AnimalController>();
