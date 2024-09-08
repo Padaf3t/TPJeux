@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Script apply to animal object to bounce them between boundaries
+/// and check if it's hungry or not
+/// </summary>
 public class AnimalController : MonoBehaviour
 {
     //reference
@@ -34,7 +38,7 @@ public class AnimalController : MonoBehaviour
         animator = gameObject.GetComponent<Animator>();
         xBoudaries = playerController.GetMaxDistanceFromZero();
 
-        //Set a random speed
+        //Set a random base speed
         speed = Random.Range(minSpeed, maxSpeed);
         if (transform.rotation.y < 0)
         {
@@ -53,6 +57,7 @@ public class AnimalController : MonoBehaviour
         {
             if (isHungry)
             {
+                //Rotate the animal when it get to the boundaries
                 if (transform.position.x <= -xBoudaries || transform.position.x >= xBoudaries)
                 {
                     transform.Rotate(0, 180, 0);
@@ -64,10 +69,12 @@ public class AnimalController : MonoBehaviour
             {
                 CheckEatingStatus();
             }
+            //move the animal
             transform.Translate(Vector3.right * actualSpeed * Time.deltaTime, Space.World);
         }
         else
         {
+            //Set the bark animation to the animal
             animator.SetBool("Bark_b", true);
         }
 
@@ -75,14 +82,20 @@ public class AnimalController : MonoBehaviour
 
 
     }
+
+    /// <summary>
+    /// Check the eating status, set the animation eating parameter and set the speed
+    /// </summary>
     private void CheckEatingStatus()
     {
+        //Check if the eat timer is done, if not update it and stop the animal
         if (eatTimer < eatTimerMax)
         { 
             animator.SetBool("Eat_b", true);
             eatTimer += Time.deltaTime;
             actualSpeed = 0f;
         }
+        //if done multiply the speed to speed up the animal
         else
         {
             animator.SetBool("Eat_b", false);
@@ -90,11 +103,15 @@ public class AnimalController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Change the status of isHungry and play the eat sound
+    /// </summary>
     public void Manger()
     {
         isHungry = false;
         audioSource.PlayOneShot(eatAudio);
     }
+
     public bool GetIsHungry() { return isHungry; }
 
     private void OnTriggerEnter(Collider collider)

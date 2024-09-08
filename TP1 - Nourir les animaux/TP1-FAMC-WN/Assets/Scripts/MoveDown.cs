@@ -20,13 +20,16 @@ public class MoveDown : MonoBehaviour
     // Update is called once per frame
     void Update()
     { 
+        //Move down if it's not a game over
         if (!gameOverTrigger.GetIsGameOver())
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + speed * Time.deltaTime);
+            //Restart the position of ground if get to the bottomBound
             if (gameObject.CompareTag("Ground") && transform.position.z < bottomBound)
             {
                 transform.position = startPosition;
             }
+            //Destroy the animal if get out of bottom screen
             else if(gameObject.CompareTag("Animal") && transform.position.z < destroyLimit)
             {
                 Destroy(gameObject);
