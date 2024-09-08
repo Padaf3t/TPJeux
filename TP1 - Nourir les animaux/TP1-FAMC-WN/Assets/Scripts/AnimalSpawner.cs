@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Script to spawn animal inside the boundary
+/// </summary>
 public class AnimalSpawner : MonoBehaviour
 {
     //reference
