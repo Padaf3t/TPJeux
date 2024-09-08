@@ -32,7 +32,7 @@ public class AnimalController : MonoBehaviour
 
         //Set a random speed
         speed = Random.Range(minSpeed, maxSpeed);
-        if(transform.rotation.y < 0)
+        if (transform.rotation.y < 0)
         {
             speed = -speed;
         }
@@ -61,11 +61,15 @@ public class AnimalController : MonoBehaviour
                 CheckEatingStatus();
             }
             transform.Translate(Vector3.right * actualSpeed * Time.deltaTime, Space.World);
-        }else
+        }
+        else
         {
             animator.SetBool("Bark_b", true);
         }
-        
+
+
+
+
     }
     private void CheckEatingStatus()
     {
@@ -82,8 +86,16 @@ public class AnimalController : MonoBehaviour
         }
     }
 
-    public void Manger() {
+    public void Manger()
+    {
         isHungry = false;
     }
     public bool GetIsHungry() { return isHungry; }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if(collider.gameObject.tag == "Border")
+            Destroy(this.gameObject);
+        
+    }
 }
