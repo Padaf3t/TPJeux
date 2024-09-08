@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Script to spawn animal inside the boundary
+/// </summary>
 public class AnimalSpawner : MonoBehaviour
 {
     //reference
@@ -14,7 +17,6 @@ public class AnimalSpawner : MonoBehaviour
     private float progress = 0f;
     //spawn
     private float xBoundaries;
-    private Vector3 spawnPos;
     private float[] rotationDirectionTab = { -1, 1 };
     //difficulty
     private float timeBetweenDifficulty = 15.0f;
@@ -39,14 +41,15 @@ public class AnimalSpawner : MonoBehaviour
         {
             UpdateTimer();
 
+            //if we're at the next delay spawn a new animal and select a random delay
             if (progress >= nextDelay)
             {
                 progress = 0f;
-                SpawnObstacle();
-
+                SpawnAnimal();
                 nextDelay = Random.Range(0.50f * normalDelay, 1.5f * normalDelay);
             }
 
+            //if we're at the next difficulty step, increase difficulty by 5%;
             if (difficultyProgress >= timeBetweenDifficulty)
             {
                 difficultyProgress = 0f;
@@ -55,23 +58,34 @@ public class AnimalSpawner : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Add time to the timer
+    /// </summary>
     private void UpdateTimer()
     {
         progress += Time.deltaTime;
         difficultyProgress += Time.deltaTime;
     }
 
-    private void SpawnObstacle()
+    /// <summary>
+    /// Spawn a new animal at a random position and direction
+    /// </summary>
+    private void SpawnAnimal()
     {
+        //Select the animal prefab
         GameObject animal = animals[(Random.Range(0, animals.Length))];
-        float xPos = Random.Range(-xBoundaries, xBoundaries);
 
+        //Set a random pos
+        float xPos = Random.Range(-xBoundaries, xBoundaries);
+        Vector3 spawnPos = new Vector3(xPos, 0, transform.position.z);
+
+        //Set a random rotation at -90 or 90
         float rotationDirection = rotationDirectionTab[(Random.Range(0, rotationDirectionTab.Length))];
-        animal.transform.rotation = new Quaternion(
+        Quaternion animalRotation = new Quaternion(
             animal.transform.rotation.x, animal.transform.rotation.y * rotationDirection, animal.transform.rotation.z, animal.transform.rotation.w);
-        
-        spawnPos = new Vector3(xPos, 0, transform.position.z);
-        Instantiate(animal, spawnPos, animal.transform.rotation);
+
+        //Spawn a new animal
+        Instantiate(animal, spawnPos, animalRotation);
 
     }
 }
