@@ -7,7 +7,7 @@ public class AnimalController : MonoBehaviour
     //reference
     private PlayerController playerController;
     private GameOverTrigger gameOverTrigger;
-    public Animator animator;
+    private Animator animator;
     //speed and movement
     private float xBoudaries;
     private float speed;
@@ -19,6 +19,9 @@ public class AnimalController : MonoBehaviour
     private bool isHungry = true;
     private float eatTimerMax = 1f;
     private float eatTimer = 0f;
+    //Sound
+    public AudioSource audioSource;
+    public AudioClip eatAudio;
 
 
     // Start is called before the first frame update
@@ -27,6 +30,7 @@ public class AnimalController : MonoBehaviour
         //Get reference
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         gameOverTrigger = GameObject.Find("GameOver Trigger").GetComponent<GameOverTrigger>();
+        audioSource = GameObject.Find("Main Camera").GetComponent<AudioSource>();
         animator = gameObject.GetComponent<Animator>();
         xBoudaries = playerController.GetMaxDistanceFromZero();
 
@@ -74,7 +78,7 @@ public class AnimalController : MonoBehaviour
     private void CheckEatingStatus()
     {
         if (eatTimer < eatTimerMax)
-        {
+        { 
             animator.SetBool("Eat_b", true);
             eatTimer += Time.deltaTime;
             actualSpeed = 0f;
@@ -89,6 +93,7 @@ public class AnimalController : MonoBehaviour
     public void Manger()
     {
         isHungry = false;
+        audioSource.PlayOneShot(eatAudio);
     }
     public bool GetIsHungry() { return isHungry; }
 

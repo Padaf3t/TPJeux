@@ -27,7 +27,11 @@ public class FoodController : MonoBehaviour
         //call manger function if the other collider if an animal and destroy this gameObject
         if(other.gameObject.CompareTag("Animal"))
         {
-            other.gameObject.GetComponent<AnimalController>().Manger();
+            AnimalController animalControllerScript = other.gameObject.GetComponent<AnimalController>();
+            if (animalControllerScript.GetIsHungry())
+            {
+                animalControllerScript.Manger();
+            }
             Destroy(gameObject);
         }
     }
