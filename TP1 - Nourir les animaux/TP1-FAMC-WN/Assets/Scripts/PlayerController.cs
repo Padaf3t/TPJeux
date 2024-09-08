@@ -18,7 +18,8 @@ public class PlayerController : MonoBehaviour
     private float rotationDirection;
     //projectile
     public GameObject projectileObject;
-    private float distanceFromPlayer = 0.7f;
+    private float zDistanceFromPlayer = 0.7f;
+    private float yDistanceFromPlayer = 2f;
     //sound
     public AudioSource playerAudio;
     public AudioClip throwAudio;
@@ -50,7 +51,7 @@ public class PlayerController : MonoBehaviour
                 playerAudio.PlayOneShot(throwAudio);
                 throwBoneParticle.Play();
 
-                Vector3 throwPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z + distanceFromPlayer);
+                Vector3 throwPosition = new Vector3(transform.position.x, transform.position.y + yDistanceFromPlayer, transform.position.z + zDistanceFromPlayer);
                 Instantiate(projectileObject, throwPosition, projectileObject.transform.rotation);
             }
         }
