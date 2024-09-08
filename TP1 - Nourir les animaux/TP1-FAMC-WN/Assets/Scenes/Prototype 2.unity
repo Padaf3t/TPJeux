@@ -504,7 +504,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4cd8a6d3c5a57784f90faaaab820c675, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -990,6 +990,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileObject: {fileID: 401769237073796777, guid: 7d885f6f9c876504686cfb258f5ac47f, type: 3}
+  playerAudio: {fileID: 534669906}
+  audioTir: {fileID: 8300000, guid: 9634f8046e07b32458018ff4ab0b1c17, type: 3}
 --- !u!1 &2108863281
 GameObject:
   m_ObjectHideFlags: 0

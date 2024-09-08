@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
     //Projectile
     [SerializeReference]private GameObject projectileObject;
     private float distanceFromPlayer = 0.7f;
+    //Sound
+    public AudioSource playerAudio;
+    public AudioClip audioTir;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +45,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                playerAudio.PlayOneShot(audioTir);
                 Instantiate(projectileObject, new Vector3(transform.position.x, transform.position.y, transform.position.z + distanceFromPlayer), projectileObject.transform.rotation);
             }
         }
