@@ -7,11 +7,11 @@ public class PlayerController : MonoBehaviour
 {
     //reference
     private Animator playerAnim;
+    private GameMasterScript gameMaster;
     //movement
     private float horizontalInput;
     private float lateralSpeed = 10f;
-    //movement boundaries, static for other script to get it
-    public static float xBoudaries = 10f;
+    private float xBoudaries;
     //rotation
     private float currentRotation;
     private float rotationSpeed = 150;
@@ -25,12 +25,16 @@ public class PlayerController : MonoBehaviour
     public AudioClip throwAudio;
     //particles
     public ParticleSystem throwBoneParticle;
+    //score
+    private int negativeThrowScore = -1;
 
     // Start is called before the first frame update
     void Start()
     {
         //Set the reference
         playerAnim = gameObject.GetComponent<Animator>();
+        gameMaster = GameObject.Find("GameMaster").GetComponent<GameMasterScript>();
+        xBoudaries = GameMasterScript.xBoudaries;
     }
 
     // Update is called once per frame
@@ -53,6 +57,8 @@ public class PlayerController : MonoBehaviour
 
                 Vector3 throwPosition = new Vector3(transform.position.x, transform.position.y + yDistanceFromPlayer, transform.position.z + zDistanceFromPlayer);
                 Instantiate(projectileObject, throwPosition, projectileObject.transform.rotation);
+
+                gameMaster.AddScore(negativeThrowScore);
             }
         }
         else

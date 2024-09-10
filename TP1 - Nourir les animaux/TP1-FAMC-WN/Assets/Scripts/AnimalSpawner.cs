@@ -25,7 +25,7 @@ public class AnimalSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        xBoundaries = PlayerController.xBoudaries - safeDistance;
+        xBoundaries = GameMasterScript.xBoudaries - safeDistance;
         nextDelay = Random.Range(0.50f * normalDelay, 1.5f * normalDelay);
     }
 

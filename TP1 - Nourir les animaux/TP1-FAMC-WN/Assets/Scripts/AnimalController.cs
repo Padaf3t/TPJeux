@@ -10,6 +10,7 @@ public class AnimalController : MonoBehaviour
 {
     //reference
     private Animator animator;
+    private GameMasterScript gameMaster;
     //speed and movement
     private float xBoudaries;
     private float speed;
@@ -17,11 +18,13 @@ public class AnimalController : MonoBehaviour
     private float minSpeed = 2f;
     private float actualSpeed;
     private float notHungrySpeedMultiplier = 2f;
-    //Eating
+    //eating
     private bool isHungry = true;
     private float eatTimerMax = 1f;
     private float eatTimer = 0f;
-    //Sound
+    //score
+    private int eatingScore = 5;
+    //sound
     public AudioSource audioSource;
     public AudioClip eatAudio;
     public AudioClip barkAudio;
@@ -32,7 +35,8 @@ public class AnimalController : MonoBehaviour
     {
         //Get reference
         animator = gameObject.GetComponent<Animator>();
-        xBoudaries = PlayerController.xBoudaries;
+        xBoudaries = GameMasterScript.xBoudaries;
+        gameMaster = GameObject.Find("GameMaster").GetComponent<GameMasterScript>();
 
         //Set a random base speed
         speed = Random.Range(minSpeed, maxSpeed);
@@ -110,6 +114,8 @@ public class AnimalController : MonoBehaviour
     {
         isHungry = false;
         audioSource.PlayOneShot(eatAudio);
+        gameMaster.AddScore(eatingScore);
+        
     }
 
     public bool GetIsHungry() { return isHungry; }
