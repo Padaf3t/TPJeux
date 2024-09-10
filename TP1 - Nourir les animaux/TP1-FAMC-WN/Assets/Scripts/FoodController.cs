@@ -13,7 +13,7 @@ public class FoodController : MonoBehaviour
     {
         //move and rotate the food
         transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.World);
-        transform.Rotate(new Vector3 (1,1,1));
+        transform.Rotate(new Vector3 (600,600,600) * Time.deltaTime);
 
         //Destroy the object if not on screen
         if(transform.position.z > zLimit)
