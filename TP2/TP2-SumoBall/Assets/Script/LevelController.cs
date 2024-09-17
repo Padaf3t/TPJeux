@@ -34,13 +34,26 @@ public class LevelController : MonoBehaviour
     private void NextLevel()
     {
         UpDifficulty();
-        SpawnEnemy();
+        SpawnEnemies();
         SpawnPowerUp();
     }
 
-    private void SpawnEnemy()
+    private void SpawnEnemies()
     {
-        
+        for(int i = 0; i < difficultyLvl; i++)
+        {
+            if (i % 10 == 0) InstanciateEnemy(5);
+            if (i % 5 == 0) InstanciateEnemy(4);
+            if (i % 3 == 0) InstanciateEnemy(3);
+            if (i % 2 == 0) InstanciateEnemy(2);
+            InstanciateEnemy(1);
+        }
+    }
+
+    private void InstanciateEnemy(int enemyLvl)
+    {
+        enemyRemaining++;
+        Instantiate(enemies[enemyLvl], transform.position, transform.rotation);
     }
 
     private void SpawnPowerUp()
