@@ -12,15 +12,13 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         rb = GetComponent<Rigidbody>();
-       
     }
 
     private void FixedUpdate()
     {
         Vector3 vectorPlayer = PlayerController.playerObject.transform.position - this.transform.position;
-        rb.AddForce(vectorPlayer, ForceMode.Force);
+        rb.AddForce(vectorPlayer, ForceMode.Acceleration);
     }
 
     // Update is called once per frame
