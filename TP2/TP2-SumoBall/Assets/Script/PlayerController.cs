@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private float verticalInput;
-    private float speed = 300f;
+    private float speed = 10f;
     private Rigidbody rb;
     private Camera cam;
     public static GameObject playerObject;
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     }
 
     //Reste a ajouter le powerUpType dans les paramètres
-    private void EnablePowerUp()
+    public void EnablePowerUp(PowerUp.PowerUpType type)
     {
         //À implémenter
     }

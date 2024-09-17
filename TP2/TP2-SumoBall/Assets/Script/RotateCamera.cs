@@ -5,7 +5,7 @@ using UnityEngine;
 public class NewBehaviourScript : MonoBehaviour
 {
 
-    private float rotationSpeed = 20f;
+    private float rotationSpeed = 40f;
     private float horizontalInput;
 
 
