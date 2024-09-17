@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
 
+    public GameObject enemyObject;
+
     private float pullForce = -10f;
     Rigidbody rb;
 
