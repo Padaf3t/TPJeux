@@ -4,15 +4,52 @@ using UnityEngine;
 
 public class LevelController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private int enemyRemaining;
+    public GameObject[] powerUps;
+    public GameObject[] enemies;
+    private int difficultyLvl = 0;
+
+
+    public bool gameOver = false;
+    public static LevelController instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
+    private void Update()
+    {
+        if(enemyRemaining == 0)
+        {
+            NextLevel();
+        }
+    }
+
+    public void EnemyOutOfBound()
+    {
+        enemyRemaining--;
+    }
+
+    private void NextLevel()
+    {
+        UpDifficulty();
+        SpawnEnemy();
+        SpawnPowerUp();
+    }
+
+    private void SpawnEnemy()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void SpawnPowerUp()
     {
-        
+
+    }
+
+    private void UpDifficulty()
+    {
+        difficultyLvl++;
     }
 }
