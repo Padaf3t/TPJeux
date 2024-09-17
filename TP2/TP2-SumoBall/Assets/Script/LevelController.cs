@@ -31,6 +31,11 @@ public class LevelController : MonoBehaviour
         enemyRemaining--;
     }
 
+    public void GameOver()
+    {
+        gameOver = true;
+    }
+
     private void NextLevel()
     {
         UpDifficulty();
