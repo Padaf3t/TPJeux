@@ -12,12 +12,17 @@ public class PowerUp : MonoBehaviour
 
     PowerUpType type;
 
+    private void Update()
+    {
+        transform.Rotate(0,1,0);
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
-        PlayerController.playerObject.GetComponent<PlayerController>().EnablePowerUp(type);
-        Destroy(this);
+        other.gameObject.GetComponent<PlayerController>().EnablePowerUp(type);
+        Destroy(this.gameObject);
     }
 
 }

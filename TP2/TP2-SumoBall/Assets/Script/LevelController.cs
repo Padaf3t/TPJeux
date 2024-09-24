@@ -9,8 +9,10 @@ public class LevelController : MonoBehaviour
     public GameObject enemyPrefab;
     private int difficultyLvl = 0;
     private float bound = 10f;
+    private float yPosEnemy = 2f;
+    private float yPosPowerUp = 0f;
 
-    public bool gameOver = false;
+    private bool gameOver = false;
     public static LevelController instance;
 
     private void Awake()
@@ -29,6 +31,11 @@ public class LevelController : MonoBehaviour
         {
             NextLevel();
         }
+    }
+
+    public bool GetGameOver()
+    {
+        return gameOver;
     }
 
     public void EnemyOutOfBound()
@@ -64,7 +71,7 @@ public class LevelController : MonoBehaviour
     {
         enemyRemaining++;
 
-        Vector3 spawnPos = SetSpawnPos();
+        Vector3 spawnPos = SetSpawnPos(yPosEnemy);
 
         Instantiate(enemyPrefab, spawnPos, transform.rotation);
         enemyPrefab.GetComponent<EnemyController>().InitializeEnemy(level);
@@ -72,9 +79,9 @@ public class LevelController : MonoBehaviour
 
     private void SpawnPowerUp()
     {
-        Vector3 spawnPos = SetSpawnPos();
+        Vector3 spawnPos = SetSpawnPos(yPosPowerUp);
         GameObject powerUp = powerUps[(int)Random.Range(0f, powerUps.Length)];
-        Instantiate(powerUp,spawnPos, transform.rotation);
+        Instantiate(powerUp, spawnPos, transform.rotation);
     }
 
     private void UpDifficulty()
@@ -82,8 +89,8 @@ public class LevelController : MonoBehaviour
         difficultyLvl++;
     }
 
-    private Vector3 SetSpawnPos()
+    private Vector3 SetSpawnPos(float posY)
     {
-        return new Vector3(Random.Range(-bound, bound), 2, Random.Range(-bound, bound));
+        return new Vector3(Random.Range(-bound, bound), posY, Random.Range(-bound, bound));
     }
 }

@@ -272,8 +272,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUps:
-  - {fileID: 7868557887145217732, guid: 587f16812bfb83a4884cef2c622a9d73, type: 3}
-  - {fileID: 6859123816643222588, guid: 95ebce53639570c49a3d274f56609104, type: 3}
+  - {fileID: 9116227127219007496, guid: b8bb011cdff4d094d940186212e67a7c, type: 3}
+  - {fileID: 818444855070802982, guid: 715badfca4413d44c83393120a7da07d, type: 3}
   enemyPrefab: {fileID: 4922619487145454779, guid: e91c869f8516b754f9868e5b39b86dcc, type: 3}
   gameOver: 0
 --- !u!1 &1113162422
@@ -292,7 +292,7 @@ GameObject:
   - component: {fileID: 1113162428}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
