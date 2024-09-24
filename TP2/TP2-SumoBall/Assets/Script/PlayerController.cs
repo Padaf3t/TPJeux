@@ -84,12 +84,12 @@ public class PlayerController : MonoBehaviour
             {
                 if (intangibleTimer > 0)
                 {
-                    rb.isKinematic = false;
+                    GetComponent<SphereCollider>().isTrigger = true;
                     powerUp2Uses -= 1;
                 }
                 else
                 {
-                    rb.isKinematic = true;
+                    GetComponent<SphereCollider>().isTrigger = false;
                     intangibleTimer = 0;
                 }
             }
