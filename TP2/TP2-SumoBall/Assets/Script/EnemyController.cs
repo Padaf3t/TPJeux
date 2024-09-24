@@ -29,7 +29,7 @@ public class EnemyController : MonoBehaviour
 
     }
 
-    private GameObject InitializeEnemy(int level)
+    public GameObject InitializeEnemy(int level)
     {
         if (level == 1)
         {
