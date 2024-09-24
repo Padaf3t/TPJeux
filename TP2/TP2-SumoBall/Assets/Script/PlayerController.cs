@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
     //Reste a ajouter le powerUpType dans les paramètres
     public void EnablePowerUp(PowerUp.PowerUpType type)
     {
-        //À implémenter
+        if(type == PowerUp.PowerUpType.POWERUP01) { }
+
+
     }
 }

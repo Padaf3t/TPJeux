@@ -6,16 +6,8 @@ public class EnemyController : MonoBehaviour
 {
 
     public GameObject enemyObject;
+    public Rigidbody rb;
 
-    private float pullForce = -10f;
-    Rigidbody rb;
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
 
     private void FixedUpdate()
     {
@@ -31,6 +23,9 @@ public class EnemyController : MonoBehaviour
 
     public GameObject InitializeEnemy(LevelController.EnemyLevel level)
     {
+
+        rb = GetComponent<Rigidbody>();
+
         if (level == LevelController.EnemyLevel.LVL_UN)
         {
             rb.mass = 1.0f;

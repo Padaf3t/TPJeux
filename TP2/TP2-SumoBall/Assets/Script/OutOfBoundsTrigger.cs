@@ -22,13 +22,12 @@ public class OutOfBoundsTrigger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            LevelController.instance.EnemyOutOfBound();
+            LevelController.instance.EnemyOutOfBound();   
         }
         else
         {
-
             LevelController.instance.GameOver();
-
         }
+        Destroy(other.gameObject);
     }
 }
