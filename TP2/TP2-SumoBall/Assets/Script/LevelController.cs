@@ -8,16 +8,7 @@ public class LevelController : MonoBehaviour
     public GameObject[] powerUps;
     public GameObject enemyPrefab;
     private int difficultyLvl = 0;
-
-    public enum EnemyLevel
-    {
-        LVL_UN = 1,
-        LVL_DEUX = 2,
-        LVL_TROIS = 3,
-        LVL_QUATRE = 4,
-        LVL_CINQ = 5
-    }
-
+    private float bound = 10f;
 
     public bool gameOver = false;
     public static LevelController instance;
@@ -61,28 +52,38 @@ public class LevelController : MonoBehaviour
     {
         for(int i = 0; i < difficultyLvl; i++)
         {
-            if (i % 10 == 0) InstanciateEnemy(EnemyLevel.LVL_CINQ);
-            else if (i % 5 == 0) InstanciateEnemy(EnemyLevel.LVL_QUATRE);
-            else if (i % 3 == 0) InstanciateEnemy(EnemyLevel.LVL_TROIS);
-            else if (i % 2 == 0) InstanciateEnemy(EnemyLevel.LVL_DEUX);
-            else InstanciateEnemy(EnemyLevel.LVL_UN);
+            if (i % 10 == 0) InstantiateEnemy(EnemyController.EnemyLevel.LVL_CINQ);
+            else if (i % 5 == 0) InstantiateEnemy(EnemyController.EnemyLevel.LVL_QUATRE);
+            else if (i % 3 == 0) InstantiateEnemy(EnemyController.EnemyLevel.LVL_TROIS);
+            else if (i % 2 == 0) InstantiateEnemy(EnemyController.EnemyLevel.LVL_DEUX);
+            else InstantiateEnemy(EnemyController.EnemyLevel.LVL_UN);
         }
     }
 
-    private void InstanciateEnemy(EnemyLevel level)
+    private void InstantiateEnemy(EnemyController.EnemyLevel level)
     {
         enemyRemaining++;
-        Instantiate(enemyPrefab, new Vector3(0,0,1), transform.rotation);
+
+        Vector3 spawnPos = SetSpawnPos();
+
+        Instantiate(enemyPrefab, spawnPos, transform.rotation);
         enemyPrefab.GetComponent<EnemyController>().InitializeEnemy(level);
     }
 
     private void SpawnPowerUp()
     {
-
+        Vector3 spawnPos = SetSpawnPos();
+        GameObject powerUp = powerUps[(int)Random.Range(0f, powerUps.Length)];
+        Instantiate(powerUp,spawnPos, transform.rotation);
     }
 
     private void UpDifficulty()
     {
         difficultyLvl++;
+    }
+
+    private Vector3 SetSpawnPos()
+    {
+        return new Vector3(Random.Range(-bound, bound), 2, Random.Range(-bound, bound));
     }
 }

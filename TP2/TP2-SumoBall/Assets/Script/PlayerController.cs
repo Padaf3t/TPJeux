@@ -32,7 +32,10 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.AddForce(cam.transform.forward * speed * verticalInput, ForceMode.Force);
+        var dir = cam.transform.forward;
+        dir.y = 0;
+        dir.Normalize();
+        rb.AddForce(dir * speed * verticalInput, ForceMode.Force);
 
     }
 

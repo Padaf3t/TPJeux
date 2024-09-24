@@ -8,6 +8,15 @@ public class EnemyController : MonoBehaviour
     public GameObject enemyObject;
     public Rigidbody rb;
 
+    public enum EnemyLevel
+    {
+        LVL_UN = 1,
+        LVL_DEUX = 2,
+        LVL_TROIS = 3,
+        LVL_QUATRE = 4,
+        LVL_CINQ = 5
+    }
+
 
     private void FixedUpdate()
     {
@@ -21,25 +30,25 @@ public class EnemyController : MonoBehaviour
 
     }
 
-    public GameObject InitializeEnemy(LevelController.EnemyLevel level)
+    public GameObject InitializeEnemy(EnemyLevel level)
     {
 
         rb = GetComponent<Rigidbody>();
 
-        if (level == LevelController.EnemyLevel.LVL_UN)
+        if (level == EnemyLevel.LVL_UN)
         {
             rb.mass = 1.0f;
           
         }
-        else if (level == LevelController.EnemyLevel.LVL_DEUX)
+        else if (level == EnemyLevel.LVL_DEUX)
         {
             rb.mass = 10.0f;
         }
-        else if (level == LevelController.EnemyLevel.LVL_TROIS)
+        else if (level == EnemyLevel.LVL_TROIS)
         {
             rb.mass = 20.0f;
         }
-        else if (level == LevelController.EnemyLevel.LVL_QUATRE)
+        else if (level == EnemyLevel.LVL_QUATRE)
         {
             rb.mass = 50.0f;
         }
