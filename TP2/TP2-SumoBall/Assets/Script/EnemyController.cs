@@ -29,21 +29,22 @@ public class EnemyController : MonoBehaviour
 
     }
 
-    public GameObject InitializeEnemy(int level)
+    public GameObject InitializeEnemy(LevelController.EnemyLevel level)
     {
-        if (level == 1)
+        if (level == LevelController.EnemyLevel.LVL_UN)
         {
             rb.mass = 1.0f;
+          
         }
-        else if (level == 2)
+        else if (level == LevelController.EnemyLevel.LVL_DEUX)
         {
             rb.mass = 10.0f;
         }
-        else if (level == 3)
+        else if (level == LevelController.EnemyLevel.LVL_TROIS)
         {
             rb.mass = 20.0f;
         }
-        else if (level == 4)
+        else if (level == LevelController.EnemyLevel.LVL_QUATRE)
         {
             rb.mass = 50.0f;
         }
