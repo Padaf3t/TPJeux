@@ -24,8 +24,9 @@ public class PlayerController : MonoBehaviour
 
     public Material playerMaterial;
 
+    
     private float setIsShinyTrue = 1f;
-    private float setIsShinyFalse = 1f;
+    private float setIsShinyFalse = 0f;
 
 
     // Start is called before the first frame update
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
         cam = Camera.main;
         playerObject = this.gameObject;
         ballCollider = playerObject.GetComponent<Collider>();
+        playerMaterial.SetFloat("_isShiny", setIsShinyFalse);
     }
 
     // Update is called once per frame
