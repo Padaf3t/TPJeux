@@ -12,6 +12,13 @@ public class ColorChangeOnHit : MonoBehaviour
     private float blendFactor = 0;
     private float blendSpeed = 2;
 
+    private AudioSource audioSource;
+    public AudioClip owClip;
+
+    private void Start()
+    {
+        audioSource = LevelController.instance.GetComponent<AudioSource>();
+    }
     private void Update()
     {
         if(blendFactor > 0)
@@ -26,6 +33,7 @@ public class ColorChangeOnHit : MonoBehaviour
     {
         if (collision.rigidbody)
         {
+            audioSource.PlayOneShot(owClip);
             StartCoroutine(ChangeColor());
         }
     }
