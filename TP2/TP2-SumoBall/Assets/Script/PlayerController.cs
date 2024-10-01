@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private bool powerUp1IsActive = false;
     private bool powerUp2IsActive = false;
     private float powerUp1Duration;
-    private float powerUpStrengthWeight = 15f;
+    private float powerUpStrengthWeight = 300f;
     private int powerUp2Uses = 10;
     private float intangibleTimerStart = 2f;
     private float intangibleTimeRemaining;
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
             var dir = cam.transform.forward;
             dir.y = 0;
             dir.Normalize();
-            rb.AddForce(dir * speed * verticalInput, ForceMode.Force);
+            rb.AddForce(dir * speed * verticalInput, ForceMode.Acceleration);
         }
     }
 
