@@ -25,6 +25,7 @@ public class LevelController : MonoBehaviour
 
     private void Start()
     {
+        source.Play();
         NextLevel();
     }
 

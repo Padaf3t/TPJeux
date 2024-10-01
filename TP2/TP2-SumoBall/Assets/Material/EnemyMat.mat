@@ -45,7 +45,7 @@ Material:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
     - _MeltingLevel: 1.22
-    - _meltingLevel: 0.4
+    - _meltingLevel: 0.1
     m_Colors:
     - _BaseColor: {r: 1, g: 0.8973636, b: 0, a: 0}
     - _BlackColor: {r: 0, g: 0, b: 0, a: 0}
