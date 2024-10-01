@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class OutOfBoundsTrigger : MonoBehaviour
 {
+    
 
     private void OnTriggerExit(Collider other)
     {
@@ -14,6 +15,7 @@ public class OutOfBoundsTrigger : MonoBehaviour
         else
         {
             LevelController.instance.GameOver();
+          
         }
         Destroy(other.gameObject);
     }

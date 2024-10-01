@@ -15,6 +15,9 @@ public class LevelController : MonoBehaviour
     private bool gameOver = false;
     public static LevelController instance;
 
+    public AudioClip scream;
+    public AudioSource source;
+
     private void Awake()
     {
         instance = this;
@@ -41,7 +44,9 @@ public class LevelController : MonoBehaviour
 
     public void GameOver()
     {
+
         gameOver = true;
+        source.PlayOneShot(scream);
     }
 
     private void NextLevel()
