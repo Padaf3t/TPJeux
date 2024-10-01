@@ -23,9 +23,16 @@ public class LevelController : MonoBehaviour
         instance = this;
     }
 
+    private void Update()
+    {
+        if (!source.isPlaying)
+        {
+            source.Play();
+        }
+    }
+
     private void Start()
     {
-        source.Play();
         NextLevel();
     }
 
@@ -82,8 +89,10 @@ public class LevelController : MonoBehaviour
     private void SpawnPowerUp()
     {
         Vector3 spawnPos = SetSpawnPos(yPosPowerUp);
-        GameObject powerUp = powerUps[(int)Random.Range(0f, powerUps.Length)];
-        Instantiate(powerUp, spawnPos, transform.rotation);
+        int positionPowerUp = (int)Random.Range(0f, powerUps.Length);
+        GameObject powerUp = powerUps[positionPowerUp];
+        GameObject powerUpInstance = Instantiate(powerUp, spawnPos, transform.rotation);
+        powerUpInstance.GetComponent<PowerUp>().SetPowerUpType(positionPowerUp);
     }
 
     private void UpDifficulty()

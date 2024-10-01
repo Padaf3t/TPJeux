@@ -25,4 +25,21 @@ public class PowerUp : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    public void SetPowerUpType(int enumPosition)
+    {
+        switch (enumPosition)
+        {
+            case 0:
+                type = PowerUpType.POWERUP01;
+                break;
+            case 1:
+                type = PowerUpType.POWERUP02;
+                break;
+            default:
+                break;
+        }
+            
+        
+    }
+
 }

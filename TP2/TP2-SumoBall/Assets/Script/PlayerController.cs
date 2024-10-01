@@ -27,6 +27,10 @@ public class PlayerController : MonoBehaviour
     
     private float setIsShinyTrue = 1f;
     private float setIsShinyFalse = 0f;
+    private AudioSource source;
+    private AudioClip baseClip;
+    public AudioClip powerUp1Clip;
+    public AudioClip powerUp2Clip;
 
 
     // Start is called before the first frame update
@@ -37,6 +41,9 @@ public class PlayerController : MonoBehaviour
         playerObject = this.gameObject;
         ballCollider = playerObject.GetComponent<Collider>();
         playerMaterial.SetFloat("_isShiny", setIsShinyFalse);
+        source = LevelController.instance.GetComponent<AudioSource>();
+        baseClip = source.clip;
+
     }
 
     // Update is called once per frame
@@ -71,6 +78,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                source.clip = baseClip;
                 powerUp1Duration = 0;
                 powerUp1IsActive = false;
                 this.rb.mass -= powerUpStrengthWeight;
@@ -88,11 +96,15 @@ public class PlayerController : MonoBehaviour
 
             if (intangibleTimeRemaining <= 0)
             {
+                playerMaterial.SetFloat("_isShiny", setIsShinyFalse);
+                source.clip = baseClip;
                 Physics.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Enemy"), false);
             }
 
             if (Input.GetKeyDown(KeyCode.Space) && powerUp2Uses > 0)
             {
+                playerMaterial.SetFloat("_isShiny", setIsShinyTrue);
+                source.clip = powerUp2Clip;
                 intangibleTimeRemaining = intangibleTimerStart;
                 Physics.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Enemy"), true);
                 powerUp2Uses -= 1;
@@ -108,11 +120,6 @@ public class PlayerController : MonoBehaviour
 
     public void EnablePowerUp(PowerUp.PowerUpType type)
     {
-
-        
-        playerMaterial.SetFloat("_isShiny", setIsShinyTrue);
-        
-
         if (type == PowerUp.PowerUpType.POWERUP01)
         {
             StartPowerUp1();
@@ -127,6 +134,8 @@ public class PlayerController : MonoBehaviour
 
     private void StartPowerUp1()
     {
+        source.clip = powerUp1Clip;
+        playerMaterial.SetFloat("_isShiny", setIsShinyTrue);
         powerUp1Duration += 15;
         if (!powerUp1IsActive)
         {
