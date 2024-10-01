@@ -25,14 +25,6 @@ public class LevelController : MonoBehaviour
         NextLevel();
     }
 
-    private void Update()
-    {
-        if(enemyRemaining == 0)
-        {
-            NextLevel();
-        }
-    }
-
     public bool GetGameOver()
     {
         return gameOver;
@@ -41,6 +33,10 @@ public class LevelController : MonoBehaviour
     public void EnemyOutOfBound()
     {
         enemyRemaining--;
+        if (enemyRemaining == 0)
+        {
+            NextLevel();
+        }
     }
 
     public void GameOver()

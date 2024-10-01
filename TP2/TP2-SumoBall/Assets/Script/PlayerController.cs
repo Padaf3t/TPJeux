@@ -34,19 +34,23 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        verticalInput = Input.GetAxis("Vertical");
-        UpdatePowerUp1();
-        UpdatePowerUp2();
-
+        if (!LevelController.instance.GetGameOver())
+        {
+            verticalInput = Input.GetAxis("Vertical");
+            UpdatePowerUp1();
+            UpdatePowerUp2();
+        }
     }
 
     private void FixedUpdate()
     {
-        var dir = cam.transform.forward;
-        dir.y = 0;
-        dir.Normalize();
-        rb.AddForce(dir * speed * verticalInput, ForceMode.Force);
-
+        if (!LevelController.instance.GetGameOver())
+        {
+            var dir = cam.transform.forward;
+            dir.y = 0;
+            dir.Normalize();
+            rb.AddForce(dir * speed * verticalInput, ForceMode.Force);
+        }
     }
 
     private void UpdatePowerUp1()

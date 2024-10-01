@@ -23,14 +23,11 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 vectorPlayer = PlayerController.playerObject.transform.position - this.transform.position;
-        rb.AddForce(vectorPlayer, ForceMode.Acceleration);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        if (!LevelController.instance.GetGameOver())
+        {
+            Vector3 vectorPlayer = PlayerController.playerObject.transform.position - this.transform.position;
+            rb.AddForce(vectorPlayer, ForceMode.Acceleration);
+        }
     }
 
     public GameObject InitializeEnemy(EnemyLevel level)
