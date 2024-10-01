@@ -22,6 +22,12 @@ public class PlayerController : MonoBehaviour
     private float intangibleTimeRemaining;
     private Collider ballCollider;
 
+    public Material playerMaterial;
+
+    private float setIsShinyTrue = 1f;
+    private float setIsShinyFalse = 1f;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -66,12 +72,14 @@ public class PlayerController : MonoBehaviour
                 powerUp1Duration = 0;
                 powerUp1IsActive = false;
                 this.rb.mass -= powerUpStrengthWeight;
+                playerMaterial.SetFloat("_isShiny", setIsShinyFalse);
             }
         }
     }
 
     private void UpdatePowerUp2()
     {
+        
         if (powerUp2IsActive)
         {
             intangibleTimeRemaining -= Time.deltaTime;
@@ -91,11 +99,18 @@ public class PlayerController : MonoBehaviour
         else if (powerUp2Uses == 0)
         {
             powerUp2IsActive = false;
+            playerMaterial.SetFloat("_isShiny", setIsShinyFalse);
+
         }
     }
 
     public void EnablePowerUp(PowerUp.PowerUpType type)
     {
+
+        
+        playerMaterial.SetFloat("_isShiny", setIsShinyTrue);
+        
+
         if (type == PowerUp.PowerUpType.POWERUP01)
         {
             StartPowerUp1();
