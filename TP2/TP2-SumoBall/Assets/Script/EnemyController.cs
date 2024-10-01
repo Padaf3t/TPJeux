@@ -7,6 +7,9 @@ public class EnemyController : MonoBehaviour
 
     public GameObject enemyObject;
     public Rigidbody rb;
+    private Vector3 baseSize = Vector3.one;
+    private Vector3 bigSize = new Vector3(1.5f, 1.5f, 1.5f);
+    private Vector3 smallSize = new Vector3(0.25f, 0.25f, 0.25f);
 
     public enum EnemyLevel
     {
@@ -34,27 +37,30 @@ public class EnemyController : MonoBehaviour
     {
 
         rb = GetComponent<Rigidbody>();
+        transform.localScale = baseSize;
 
-        if (level == EnemyLevel.LVL_UN)
+        switch (level)
         {
-            rb.mass = 1.0f;
-          
-        }
-        else if (level == EnemyLevel.LVL_DEUX)
-        {
-            rb.mass = 10.0f;
-        }
-        else if (level == EnemyLevel.LVL_TROIS)
-        {
-            rb.mass = 20.0f;
-        }
-        else if (level == EnemyLevel.LVL_QUATRE)
-        {
-            rb.mass = 50.0f;
-        }
-        else 
-        {
-            rb.mass = 100.0f;
+            case EnemyLevel.LVL_UN:
+                rb.mass = 1.0f;
+                break;
+            case EnemyLevel.LVL_DEUX:
+                rb.mass = 10.0f;
+                transform.localScale = bigSize;
+                break;
+            case EnemyLevel.LVL_TROIS:
+                rb.mass = 20.0f;
+                break;
+            case EnemyLevel.LVL_QUATRE:
+                rb.mass = 50.0f;
+                break;
+            case EnemyLevel.LVL_CINQ:
+                rb.mass = 100.0f;
+                transform.localScale = smallSize;
+                break;
+            default:
+                rb.mass = 1.0f;
+                break;
         }
 
         return this.gameObject;

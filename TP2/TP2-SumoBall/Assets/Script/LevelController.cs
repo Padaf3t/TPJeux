@@ -57,12 +57,12 @@ public class LevelController : MonoBehaviour
 
     private void SpawnEnemies()
     {
-        for(int i = 0; i < difficultyLvl; i++)
+        for(float i = 1; i <= difficultyLvl; i++)
         {
             if (i % 10 == 0) InstantiateEnemy(EnemyController.EnemyLevel.LVL_CINQ);
-            else if (i % 5 == 0) InstantiateEnemy(EnemyController.EnemyLevel.LVL_QUATRE);
-            else if (i % 3 == 0) InstantiateEnemy(EnemyController.EnemyLevel.LVL_TROIS);
-            else if (i % 2 == 0) InstantiateEnemy(EnemyController.EnemyLevel.LVL_DEUX);
+            else if (i % 7 == 0) InstantiateEnemy(EnemyController.EnemyLevel.LVL_QUATRE);
+            else if (i % 5 == 0) InstantiateEnemy(EnemyController.EnemyLevel.LVL_TROIS);
+            else if (i % 3 == 0) InstantiateEnemy(EnemyController.EnemyLevel.LVL_DEUX);
             else InstantiateEnemy(EnemyController.EnemyLevel.LVL_UN);
         }
     }
