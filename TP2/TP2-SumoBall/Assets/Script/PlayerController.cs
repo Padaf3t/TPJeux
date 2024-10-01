@@ -13,18 +13,14 @@ public class PlayerController : MonoBehaviour
     public static GameObject playerObject;
 
     //powerUp
-    private bool powerUp1IsActive;
-    private bool powerUp2IsActive = true;
+    private bool powerUp1IsActive = false;
+    private bool powerUp2IsActive = false;
     private float powerUp1Duration;
     private float powerUpStrengthWeight = 15f;
-    private int powerUp2Uses = 3;
-    private float intangibleTimer = 2f;
-
-
-
-    //Timer
-    private float progress = 0f;
-    private float timerActualPowerUp;
+    private int powerUp2Uses = 10;
+    private float intangibleTimerStart = 2f;
+    private float intangibleTimeRemaining;
+    private Collider ballCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +28,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         cam = Camera.main;
         playerObject = this.gameObject;
+        ballCollider = playerObject.GetComponent<Collider>();
     }
 
     // Update is called once per frame
@@ -50,15 +47,12 @@ public class PlayerController : MonoBehaviour
         dir.Normalize();
         rb.AddForce(dir * speed * verticalInput, ForceMode.Force);
 
-
-
     }
 
     private void UpdatePowerUp1()
     {
         if (powerUp1IsActive)
         {
-
             if (powerUp1Duration > 0)
             {
                 powerUp1Duration -= Time.deltaTime;
@@ -68,55 +62,49 @@ public class PlayerController : MonoBehaviour
                 powerUp1Duration = 0;
                 powerUp1IsActive = false;
                 this.rb.mass -= powerUpStrengthWeight;
-
             }
         }
     }
 
-
-    //todo
     private void UpdatePowerUp2()
     {
         if (powerUp2IsActive)
         {
-            intangibleTimer -= Time.deltaTime;
-            if (Input.GetKeyDown(KeyCode.Space) && powerUp2Uses > 0)
+            intangibleTimeRemaining -= Time.deltaTime;
+
+            if (intangibleTimeRemaining <= 0)
             {
-                if (intangibleTimer > 0)
-                {
-                    GetComponent<SphereCollider>().isTrigger = true;
-                    powerUp2Uses -= 1;
-                }
-                else
-                {
-                    GetComponent<SphereCollider>().isTrigger = false;
-                    intangibleTimer = 0;
-                }
-            }
-            else if (powerUp2Uses == 0)
-            {
-                powerUp2IsActive = false;
+                Physics.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Enemy"), false);
             }
 
+            if (Input.GetKeyDown(KeyCode.Space) && powerUp2Uses > 0)
+            {
+                intangibleTimeRemaining = intangibleTimerStart;
+                Physics.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Enemy"), true);
+                powerUp2Uses -= 1;
+            }
+        }
+        else if (powerUp2Uses == 0)
+        {
+            powerUp2IsActive = false;
         }
     }
 
-    //Reste a ajouter le powerUpType dans les paramètres
     public void EnablePowerUp(PowerUp.PowerUpType type)
     {
         if (type == PowerUp.PowerUpType.POWERUP01)
         {
-            powerUp1();
+            StartPowerUp1();
         }
         else if(type == PowerUp.PowerUpType.POWERUP02)
         {
-            powerUp2();
+            StartPowerUp2();
         }
 
 
     }
 
-    private void powerUp1()
+    private void StartPowerUp1()
     {
         powerUp1Duration += 15;
         if (!powerUp1IsActive)
@@ -126,12 +114,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void EndPowerUp1()
-    {
-        
-    }
-
-    private void powerUp2()
+    private void StartPowerUp2()
     {
         powerUp2Uses = 3;
         powerUp2IsActive = true;
