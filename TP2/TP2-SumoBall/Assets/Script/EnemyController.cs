@@ -11,14 +11,13 @@ public class EnemyController : MonoBehaviour
     private Vector3 bigSize = new Vector3(1.5f, 1.5f, 1.5f);
     private Vector3 smallSize = new Vector3(0.25f, 0.25f, 0.25f);
     public Material materialBase;
+    
     private float meltingLevel;
-
     private float meltingLevel1 = 0.1f;
     private float meltingLevel2 = 0.3f;
     private float meltingLevel3 = 0.6f;
     private float meltingLevel4 = 0.8f;
     private float meltingLevel5 = 1f;
-
 
     public enum EnemyLevel
     {
@@ -39,7 +38,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    public GameObject InitializeEnemy(EnemyLevel level)
+    public void InitializeEnemy(EnemyLevel level)
     {
         rb = GetComponent<Rigidbody>();
 
@@ -79,6 +78,5 @@ public class EnemyController : MonoBehaviour
         }
 
         material.SetFloat("_meltingLevel", meltingLevel);
-        return this.gameObject;
     }
 }

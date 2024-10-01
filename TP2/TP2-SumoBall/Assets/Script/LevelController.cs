@@ -69,8 +69,8 @@ public class LevelController : MonoBehaviour
 
         Vector3 spawnPos = SetSpawnPos(yPosEnemy);
 
-        Instantiate(enemyPrefab, spawnPos, transform.rotation);
-        enemyPrefab.GetComponent<EnemyController>().InitializeEnemy(level);
+        var ennemyObj = Instantiate(enemyPrefab, spawnPos, transform.rotation);
+        ennemyObj.GetComponent<EnemyController>().InitializeEnemy(level);
     }
 
     private void SpawnPowerUp()
