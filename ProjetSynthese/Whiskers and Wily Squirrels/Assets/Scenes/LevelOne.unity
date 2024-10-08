@@ -356,6 +356,10 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1165426632987856208, guid: 5ab8959398f29464da4a485f20b0a60d, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1571111152476625842, guid: 5ab8959398f29464da4a485f20b0a60d, type: 3}
       propertyPath: groundMask.m_Bits
       value: 64
