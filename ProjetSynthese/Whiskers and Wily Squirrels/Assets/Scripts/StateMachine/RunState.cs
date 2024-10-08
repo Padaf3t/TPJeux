@@ -12,7 +12,7 @@ public class RunState : State
     public override void Do()
     {
         float velX = rb.velocity.x;
-        anim.speed = Helpers.Map(input.maxSpeed, 0, 1, 0, 1.6f, true);
+        anim.speed = Helpers.Map(input.maxSpeed, 0, 1, 0, 1f, true);
 
 
         if(!input.isGrounded || input.xInput == 0)
