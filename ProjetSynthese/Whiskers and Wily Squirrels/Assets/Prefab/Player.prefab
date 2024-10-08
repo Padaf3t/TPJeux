@@ -64,7 +64,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0065129697, y: -0.007436782}
+  m_Offset: {x: 0.0057893097, y: -0.007436782}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -75,7 +75,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.076390564, y: 0.09271145}
+  m_Size: {x: 0.028629243, y: 0.09271145}
   m_EdgeRadius: 0
 --- !u!1 &2192594117608123778
 GameObject:
@@ -261,7 +261,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!95 &1930899836616383550
 Animator:
@@ -299,7 +299,6 @@ MonoBehaviour:
   airState: {fileID: 1893116777275830492}
   runState: {fileID: 4869288412840751965}
   idleState: {fileID: 1795325984789586839}
-  isGrounded: 0
   groundCheck: {fileID: 4833968411375607185}
   groundMask:
     serializedVersion: 2
