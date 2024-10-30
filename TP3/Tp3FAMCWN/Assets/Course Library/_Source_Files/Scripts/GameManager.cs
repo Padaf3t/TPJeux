@@ -35,7 +35,10 @@ public class GameManager : MonoBehaviour
         instance = this;
         pauseScript = GetComponent<PausePanel>();
 
-        //TODO reste a ajuster les valeurs au script de value et
+        gameMusic.volume = GameSetting.SoundVolume;
+        spawnRate = GameSetting.SpawnValue;
+
+        //TODO reste a 
         //verifier si scene est nouvelle partie ou non
 
         UpdateScore();

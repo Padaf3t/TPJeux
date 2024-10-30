@@ -16,6 +16,7 @@ public class Target : MonoBehaviour
 
     public int scoreValue;
     public bool isBad = false;
+    private bool particuleActivated;
 
 
     // Start is called before the first frame update
@@ -34,7 +35,10 @@ public class Target : MonoBehaviour
         //Checker pref pour voir si on run les particules
         if (!EventSystem.current.IsPointerOverGameObject())
         {
-            Instantiate(particle, transform.position, Quaternion.identity);
+            if (GameSetting.AsParticule)
+            {
+                Instantiate(particle, transform.position, Quaternion.identity);
+            }
             Destroy(gameObject);
 
             if (isBad) GameManager.instance.UpdateLives(-1);
