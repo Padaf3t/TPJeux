@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     public bool gameIsActive = true;
 
     public GameObject gameOverScreen;
+    public GameObject pausePanel;
+
+    private PausePanel pauseScript;
 
     public AudioSource gameMusic;
 
@@ -30,15 +33,21 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SpawnTargets());
 
         instance = this;
-        
+        pauseScript = GetComponent<PausePanel>();
+
+        //TODO reste a ajuster les valeurs au script de value et
+        //verifier si scene est nouvelle partie ou non
+
         UpdateScore();
         UpdateLives();
         gameOverScreen.SetActive(false);
+        pausePanel.SetActive(false);
+
     }
 
     public void RestartGame()
     {
-        SceneManager.LoadScene( SceneManager.GetActiveScene().name );
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
     }
 
@@ -51,6 +60,19 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+
+            if (pausePanel.activeSelf)
+            {
+                pauseScript.ClosePanel();
+            }
+            else
+            {
+                pauseScript.OpenPanel();
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Time.timeScale = 1f - Time.timeScale;

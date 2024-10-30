@@ -6,20 +6,25 @@ using UnityEngine.SceneManagement;
 
 public class SceneNavigator : MonoBehaviour
 {
+    public static SceneNavigator instance;
+    private void Awake()
+    {
+        instance = this;
+    }
     private void Start()
     {
         GoToMenu();
     }
 
-    private static void GoToMenu()
+    public static void GoToMenu()
     {
         SceneManager.LoadScene("Menu");
     }
-    private static void OpenGame()
+    public static void OpenGame()
     {
         SceneManager.LoadScene("Game");
     }
-    private static void ExitApp()
+    public static void ExitApp()
     {
     #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
