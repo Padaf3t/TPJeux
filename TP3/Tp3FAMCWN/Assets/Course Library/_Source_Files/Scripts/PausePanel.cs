@@ -20,7 +20,7 @@ public class PausePanel : MonoBehaviour
 
     public void SaveGame()
     {
-        
+        SaveSystem.SaveGame(null);
     }
 
     public void ReturnToMenu()
