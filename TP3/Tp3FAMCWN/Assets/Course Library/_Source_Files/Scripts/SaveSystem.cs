@@ -5,22 +5,42 @@ using System.IO;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 
+
 public class SaveSystem : MonoBehaviour
 {
-    
-    public class GameSave
+     private static readonly string path = Path.Combine(Application.persistentDataPath, $"game.save");
+
+    public class GameState
     {
         public int score;
         public int lives;
     }
 
-    public static void SaveGame(GameSave gameSave)
+    public static void SaveGame(GameState gameSave)
     {
         var serializedSave = JsonConvert.SerializeObject(gameSave);
-
-        var path = Path.Combine(Application.persistentDataPath, $"game.save");
+        File.WriteAllText(path, serializedSave);
     }
 
 
+    public bool CheckHasSave()
+    {
 
+        if (File.Exists(path))
+        {
+            return true;
+
+        }
+        else return false;
+    }
+
+
+    public static GameState LoadSaveDataFromSave()
+    {
+
+        var serializedSave = File.ReadAllText(path);
+        return JsonConvert.DeserializeObject<GameState>(serializedSave);
+
+
+    }
 }
