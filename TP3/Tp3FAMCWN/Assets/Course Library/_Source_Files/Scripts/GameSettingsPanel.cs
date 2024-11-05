@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class GameSettingsPanel : MonoBehaviour
 {
@@ -14,9 +14,7 @@ public class GameSettingsPanel : MonoBehaviour
     {
         audioSlider.SetValueWithoutNotify(GameSetting.SoundVolume);
         spawnRateSlider.SetValueWithoutNotify(GameSetting.SpawnValue);
-        particleToggle.SetValueWithoutNotify(GameSetting.HasParticule);
-
-
+        particleToggle.SetIsOnWithoutNotify(GameSetting.HasParticule);
     }
 
 

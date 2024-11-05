@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class GameSetting : MonoBehaviour
 {
-
     public static float SoundVolume
     {
         get => PlayerPrefs.GetFloat("SoundVolume", defaultValue: 1f);
@@ -22,12 +21,6 @@ public class GameSetting : MonoBehaviour
     {
         get => PlayerPrefs.GetFloat("SpawnValue", defaultValue: 1);
         set => PlayerPrefs.SetFloat("SpawnValue", value);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame

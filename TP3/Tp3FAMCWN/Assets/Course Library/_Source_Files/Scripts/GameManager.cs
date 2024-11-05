@@ -32,6 +32,11 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(SpawnTargets());
 
+        if(Time.timeScale != 1)
+        {
+            Time.timeScale = 1;
+        }
+
         instance = this;
         pauseScript = GetComponent<PausePanel>();
 

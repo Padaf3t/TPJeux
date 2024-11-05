@@ -11,6 +11,7 @@ public class MenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        parameterMenu.SetActive(false);
         if (!SaveSystem.CheckHasSave())
         {
             continueBtn.SetActive(false);

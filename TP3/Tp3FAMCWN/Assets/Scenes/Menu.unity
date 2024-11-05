@@ -675,7 +675,7 @@ GameObject:
   - component: {fileID: 192793648}
   - component: {fileID: 192793649}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: SliderSpawnRate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1162,7 +1162,7 @@ GameObject:
   - component: {fileID: 509388842}
   - component: {fileID: 509388843}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: ToggleParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2785,7 +2785,7 @@ GameObject:
   - component: {fileID: 1580464361}
   - component: {fileID: 1580464360}
   m_Layer: 5
-  m_Name: Particles text
+  m_Name: ParticleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2919,7 +2919,7 @@ GameObject:
   - component: {fileID: 1691377188}
   - component: {fileID: 1691377187}
   m_Layer: 5
-  m_Name: Spawn Rate Text
+  m_Name: SpawnRateText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3052,7 +3052,7 @@ GameObject:
   - component: {fileID: 1744078704}
   - component: {fileID: 1744078705}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: SliderAudio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3322,6 +3322,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parameterMenu: {fileID: 24578785}
+  audioSlider: {fileID: 1744078705}
+  spawnRateSlider: {fileID: 192793649}
+  particleToggle: {fileID: 509388843}
 --- !u!4 &1903320427
 Transform:
   m_ObjectHideFlags: 0
@@ -3424,7 +3427,7 @@ GameObject:
   - component: {fileID: 1968710613}
   - component: {fileID: 1968710612}
   m_Layer: 5
-  m_Name: Audio text
+  m_Name: AudioText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
