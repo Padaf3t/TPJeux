@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using static SaveSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,12 +28,11 @@ public class GameManager : MonoBehaviour
 
     public AudioSource gameMusic;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         StartCoroutine(SpawnTargets());
 
-        if(Time.timeScale != 1)
+        if (Time.timeScale != 1)
         {
             Time.timeScale = 1;
         }
@@ -44,9 +44,10 @@ public class GameManager : MonoBehaviour
         spawnRate = GameSetting.SpawnValue;
         int scoreTemp = 0;
         int liveTemp = 3;
-        if(SceneNavigator.instance.gameState != null)
-        {
 
+        if (SceneNavigator.instance.gameState != null)
+        {
+            SpawnLoadTarget();
             scoreTemp = SceneNavigator.instance.gameState.score;
             liveTemp = SceneNavigator.instance.gameState.lives;
         }
@@ -58,6 +59,12 @@ public class GameManager : MonoBehaviour
         UpdateLives(liveTemp);
         gameOverScreen.SetActive(false);
         pausePanel.SetActive(false);
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
 
     }
 
@@ -126,7 +133,26 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(1f / spawnRate);
             var index = Random.Range(0, targets.Count);
 
-            Instantiate(targets[index]);
+            GameObject target = Instantiate(targets[index]);
+            Target targetScript = target.GetComponent<Target>();
+            targetScript.type = (TypeTarget)index;
+            
         }
+    }
+
+    private void SpawnLoadTarget()
+    {
+        Time.timeScale = 0;
+        foreach (var targetData in SceneNavigator.instance.gameState.targetData)
+        {
+            // Instantiate the correct target prefab based on the type
+            GameObject targetPrefab = targets[targetData.type]; // Assuming type maps to prefab index
+            GameObject targetInstance = Instantiate(targetPrefab, new Vector3(targetData.xPosition, targetData.yPosition, targetData.zPosition),
+                                                      Quaternion.Euler(targetData.xAngle, targetData.yAngle, targetData.zAngle));
+        
+            targetInstance.GetComponent<Rigidbody>().velocity = new Vector3(targetData.xVelocity, targetData.yVelocity, targetData.zVelocity);
+            targetInstance.GetComponent<Target>().haveBeenLoaded = true;
+        }
+        Time.timeScale = 1;
     }
 }
