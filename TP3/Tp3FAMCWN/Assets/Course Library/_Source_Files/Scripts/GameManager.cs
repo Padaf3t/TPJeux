@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
+        SceneNavigator.instance.gameState = null;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
     }

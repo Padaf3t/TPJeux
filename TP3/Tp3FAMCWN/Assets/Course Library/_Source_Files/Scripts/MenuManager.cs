@@ -12,10 +12,7 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         parameterMenu.SetActive(false);
-        if (!SaveSystem.CheckHasSave())
-        {
-            continueBtn.SetActive(false);
-        }
+        continueBtn.SetActive(SaveSystem.CheckHasSave());
 
     }
 
