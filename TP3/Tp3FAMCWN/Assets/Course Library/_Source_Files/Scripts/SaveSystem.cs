@@ -23,7 +23,7 @@ public class SaveSystem : MonoBehaviour
     }
 
 
-    public bool CheckHasSave()
+    public static bool CheckHasSave()
     {
 
         if (File.Exists(path))
