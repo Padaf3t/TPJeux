@@ -28,6 +28,7 @@ public class MenuManager : MonoBehaviour
 
     public void BtnNewGameClick()
     {
+        SceneNavigator.instance.gameState = null;
         SceneNavigator.OpenGame();
     }
 

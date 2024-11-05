@@ -527,7 +527,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: 5, y: 0}
+  m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &167967412
@@ -1239,7 +1239,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1903320426}
         m_TargetAssemblyTypeName: GameSettingsPanel, Assembly-CSharp
         m_MethodName: ParticleToggle
-        m_Mode: 6
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3123,7 +3123,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 287011011}
   m_FillRect: {fileID: 1936248170}
   m_HandleRect: {fileID: 287011010}
-  m_Direction: 1
+  m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0

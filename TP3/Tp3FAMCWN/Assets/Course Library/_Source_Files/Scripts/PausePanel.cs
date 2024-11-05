@@ -31,7 +31,7 @@ public class PausePanel : MonoBehaviour
         foreach (var target in targetObjects)
         {
             // You can store any identifier for the type, e.g., use tag or some other custom field
-            int type = (int)target.GetComponent<Target>().type;
+            int type = target.GetComponent<Target>().typeIndex;
 
             // Create GameObjectData with position and rotation
             SaveSystem.GameObjectData data = new SaveSystem.GameObjectData(

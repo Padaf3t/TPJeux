@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class Target : MonoBehaviour
 {
-    public TypeTarget type;
+    public int typeIndex;
 
     private float minSpeed = 12;
     private float maxSpeed = 16;
@@ -45,17 +45,20 @@ public class Target : MonoBehaviour
             {
                 Instantiate(particle, transform.position, Quaternion.identity);
             }
+            if (isBad)
+            {
+                GameManager.instance.UpdateLives(-1);
+            }
+            
+            GameManager.instance.UpdateScore(scoreValue);
             Destroy(gameObject);
-
-            if (isBad) GameManager.instance.UpdateLives(-1);
-            else GameManager.instance.UpdateScore(scoreValue);
+            
         }
     }
 
     //Called when Target reaches the bottom of the screen
     private void OnTriggerEnter(Collider other){
+        if (!isBad) GameManager.instance.UpdateLives(-1);
         Destroy(gameObject);
-
-        if(!isBad) GameManager.instance.UpdateLives(-1);
     }
 }

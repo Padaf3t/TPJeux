@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
 
     public int score = 0;
-    public int nLives { get; private set; } = 3;
+    public int nLives { get; private set; }
 
     public static GameManager instance;
 
@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour
 
             GameObject target = Instantiate(targets[index]);
             Target targetScript = target.GetComponent<Target>();
-            targetScript.type = (TypeTarget)index;
+            targetScript.typeIndex = index;
             
         }
     }
