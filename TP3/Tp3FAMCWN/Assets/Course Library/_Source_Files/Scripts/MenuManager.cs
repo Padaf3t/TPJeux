@@ -32,7 +32,7 @@ public class MenuManager : MonoBehaviour
 
     public void BtnParametreClick()
     {
-        Settings();
+        OpenSettings();
     }
 
     public void BtnQuitClick()
@@ -41,16 +41,9 @@ public class MenuManager : MonoBehaviour
     }
 
 
-    public void Settings()
+    public void OpenSettings()
     {
-        if (parameterMenu.activeSelf)
-        {
-            parameterMenu.SetActive(false);
-        }
-        else
-        {
-            parameterMenu.SetActive(true);
-        }
+        parameterMenu.SetActive(true);
     }
 
 }
