@@ -7,18 +7,27 @@ public class PausePanel : MonoBehaviour
 {
     public GameObject pausePanel;
 
+    /// <summary>
+    /// Open the pause panel
+    /// </summary>
     public void OpenPanel()
     {
         Time.timeScale = 0;
         pausePanel.SetActive(true);
     }
 
+    /// <summary>
+    /// Close the pause panel
+    /// </summary>
     public void ClosePanel()
     {
         Time.timeScale = 1;
         pausePanel.SetActive(false);
     }
 
+    /// <summary>
+    /// Save the state of the game
+    /// </summary>
     public void SaveGame()
     {
         // Find all GameObjects with the tag "Target"
@@ -27,34 +36,34 @@ public class PausePanel : MonoBehaviour
         // Create a list to hold GameObjectData for each target
         List<SaveSystem.GameObjectData> targetDataList = new List<SaveSystem.GameObjectData>();
 
-        // For each target, create GameObjectData with position, rotation, and type
+        // For each target, create GameObjectData with position, rotation, velocity and type
         foreach (var target in targetObjects)
         {
-            // You can store any identifier for the type, e.g., use tag or some other custom field
             int type = target.GetComponent<Target>().typeIndex;
-
-            // Create GameObjectData with position and rotation
             SaveSystem.GameObjectData data = new SaveSystem.GameObjectData(
                 type,
                 target.transform.position,
                 target.transform.rotation,
                 target.GetComponent<Rigidbody>().velocity
             );
-
-            // Add the target data to the list
             targetDataList.Add(data);
         }
-
 
         SaveSystem.GameState gs = new SaveSystem.GameState(GameManager.instance.score, GameManager.instance.nLives, targetDataList);
         SaveSystem.SaveGame(gs);
     }
 
+    /// <summary>
+    /// Return to the main menu
+    /// </summary>
     public void ReturnToMenu()
     {
         SceneNavigator.GoToMenu();
     }
 
+    /// <summary>
+    /// Quit the game
+    /// </summary>
     public void QuitGame()
     {
         SceneNavigator.ExitApp();

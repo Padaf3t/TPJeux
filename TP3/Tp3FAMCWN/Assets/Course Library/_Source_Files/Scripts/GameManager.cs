@@ -61,13 +61,9 @@ public class GameManager : MonoBehaviour
         pausePanel.SetActive(false);
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-
-    }
-
+    /// <summary>
+    /// Restart the game, make sure the gamestate is null to reload a fresh game
+    /// </summary>
     public void RestartGame()
     {
         SceneNavigator.instance.gameState = null;
@@ -75,6 +71,9 @@ public class GameManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Set the game over screen
+    /// </summary>
     public void GameOver()
     {
         gameIsActive = false;
@@ -84,6 +83,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        //On escape, open or close the pause panel
         if (Input.GetKeyDown(KeyCode.Escape))
         {
 
@@ -97,17 +97,26 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        //put by Léo Caussant, now we can cheat :D
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Time.timeScale = 1f - Time.timeScale;
         } 
     }
 
+    /// <summary>
+    /// Set the timeScale to 0 or 1
+    /// </summary>
+    /// <param name="val"></param>
     public void SetPause(bool val = true)
     {
         Time.timeScale = val ? 1f : 0f;
     }
 
+    /// <summary>
+    /// Add the scoreToAdd to score
+    /// </summary>
+    /// <param name="scoreToAdd"></param>
     public void UpdateScore(int scoreToAdd = 0)
     {
         score += scoreToAdd;
@@ -115,6 +124,10 @@ public class GameManager : MonoBehaviour
         scoreText.text = $"Score: {score}";
     }
 
+    /// <summary>
+    /// Add the livesToAdd to nLives
+    /// </summary>
+    /// <param name="livesToAdd"></param>
     public void UpdateLives(int livesToAdd = 0)
     {
         nLives += livesToAdd;
@@ -127,6 +140,10 @@ public class GameManager : MonoBehaviour
         if (nLives <= 0) GameOver();
     }
 
+    /// <summary>
+    /// Spawn the target while the game is active
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator SpawnTargets()
     {
         while (gameIsActive)
@@ -141,6 +158,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Reload each target object if a GameState is set
+    /// Instantiate when the time is stop to make sure the object dont 
+    /// interact with each other
+    /// </summary>
     private void SpawnLoadTarget()
     {
         Time.timeScale = 0;
