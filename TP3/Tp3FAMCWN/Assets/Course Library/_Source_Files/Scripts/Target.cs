@@ -35,7 +35,7 @@ public class Target : MonoBehaviour
         //Checker pref pour voir si on run les particules
         if (!EventSystem.current.IsPointerOverGameObject())
         {
-            if (GameSetting.AsParticule)
+            if (GameSetting.HasParticule)
             {
                 Instantiate(particle, transform.position, Quaternion.identity);
             }

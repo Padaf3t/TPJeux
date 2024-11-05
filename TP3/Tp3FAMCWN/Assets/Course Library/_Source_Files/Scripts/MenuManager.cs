@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class MenuManager : MonoBehaviour
 {
     public GameObject parameterMenu;
     public GameObject continueBtn;
+    
     // Start is called before the first frame update
     void Start()
     {
-        if (!SaveSystem.CheckHasSave()) { 
+        if (!SaveSystem.CheckHasSave())
+        {
             continueBtn.SetActive(false);
         }
-        
+
     }
 
     public void BtnContinueClick()
@@ -34,7 +37,7 @@ public class MenuManager : MonoBehaviour
 
     public void BtnQuitClick()
     {
-       SceneNavigator.ExitApp();
+        SceneNavigator.ExitApp();
     }
 
 
@@ -49,4 +52,5 @@ public class MenuManager : MonoBehaviour
             parameterMenu.SetActive(true);
         }
     }
+
 }
