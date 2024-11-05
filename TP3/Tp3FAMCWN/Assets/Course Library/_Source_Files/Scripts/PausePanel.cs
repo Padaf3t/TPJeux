@@ -20,7 +20,8 @@ public class PausePanel : MonoBehaviour
 
     public void SaveGame()
     {
-        SaveSystem.SaveGame(null);
+        SaveSystem.GameState gs = new SaveSystem.GameState(GameManager.instance.score, GameManager.instance.nLives);
+        SaveSystem.SaveGame(gs);
     }
 
     public void ReturnToMenu()

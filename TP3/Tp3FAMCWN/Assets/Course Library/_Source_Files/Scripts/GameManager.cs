@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
 
     public int score = 0;
-    private int nLives = 3;
+    public int nLives { get; private set; } = 3;
 
     public static GameManager instance;
 
@@ -37,12 +37,20 @@ public class GameManager : MonoBehaviour
 
         gameMusic.volume = GameSetting.SoundVolume;
         spawnRate = GameSetting.SpawnValue;
+        int scoreTemp = 0;
+        int liveTemp = 3;
+        if(SceneNavigator.instance.gameState != null)
+        {
+
+            scoreTemp = SceneNavigator.instance.gameState.score;
+            liveTemp = SceneNavigator.instance.gameState.lives;
+        }
 
         //TODO reste a 
         //verifier si scene est nouvelle partie ou non
 
-        UpdateScore();
-        UpdateLives();
+        UpdateScore(scoreTemp);
+        UpdateLives(liveTemp);
         gameOverScreen.SetActive(false);
         pausePanel.SetActive(false);
 

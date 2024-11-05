@@ -17,7 +17,8 @@ public class MenuManager : MonoBehaviour
 
     public void BtnContinueClick()
     {
-        SaveSystem.LoadSaveDataFromSave();
+        SceneNavigator.instance.gameState = SaveSystem.LoadSaveDataFromSave();
+        SceneNavigator.OpenGame();
 
     }
 

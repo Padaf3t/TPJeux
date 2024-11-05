@@ -3,10 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static SaveSystem;
 
 public class SceneNavigator : MonoBehaviour
 {
     public static SceneNavigator instance;
+
+    public GameState gameState;
+
     private void Awake()
     {
         instance = this;
